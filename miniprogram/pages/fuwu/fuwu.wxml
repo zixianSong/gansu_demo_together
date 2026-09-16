@@ -1,0 +1,8 @@
+<view class="page page-container">
+  <view class="service-grid">
+    <view class="service-item" wx:for="{{serviceList}}" wx:key="name" data-name="{{item.name}}" bindtap="onServiceTap">
+      <image class="service-icon" src="{{item.icon}}" mode="aspectFit" />
+      <text class="service-name">{{item.name}}</text>
+    </view>
+  </view>
+</view>

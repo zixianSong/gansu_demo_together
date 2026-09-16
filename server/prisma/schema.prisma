@@ -1,0 +1,189 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider          = "mysql"
+  url               = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+}
+
+model Destination {
+  id             BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  name           String    @db.VarChar(64)
+  coverUrl       String?   @map("cover_url") @db.VarChar(512)
+  intro          String?   @db.Text
+  transportGuide String?   @map("transport_guide") @db.Text
+  status         Int       @default(1) @db.UnsignedTinyInt
+  sortWeight     Int       @default(0) @map("sort_weight")
+  createdAt      DateTime  @default(now()) @map("created_at")
+  updatedAt      DateTime  @updatedAt @map("updated_at")
+  deletedAt      DateTime? @map("deleted_at")
+
+  hotConfigs     HomeHotDestination[]
+  pois           Poi[]
+  routeTemplates RouteTemplate[]
+
+  @@map("destination")
+}
+
+model RouteTemplate {
+  id            BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  destinationId BigInt?   @map("destination_id") @db.UnsignedBigInt
+  name          String    @db.VarChar(128)
+  coverUrl      String?   @map("cover_url") @db.VarChar(512)
+  subtitle      String?   @db.VarChar(255)
+  intro         String?   @db.Text
+  daysCount     Int       @map("days_count")
+  status        Int       @default(1) @db.UnsignedTinyInt
+  sortWeight    Int       @default(0) @map("sort_weight")
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @updatedAt @map("updated_at")
+  deletedAt     DateTime? @map("deleted_at")
+
+  destination Destination?     @relation(fields: [destinationId], references: [id])
+  hotConfigs  HomeHotRoute[]
+  articles    ArticleRoute[]
+
+  @@map("route_template")
+}
+
+model Poi {
+  id             BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  destinationId  BigInt?   @map("destination_id") @db.UnsignedBigInt
+  category       String    @db.VarChar(32)
+  poiSubtype     String    @map("poi_subtype") @db.VarChar(32)
+  name           String    @db.VarChar(128)
+  coverUrl       String?   @map("cover_url") @db.VarChar(512)
+  imagesJson     Json?     @map("images_json")
+  tagsJson       Json?     @map("tags_json")
+  address        String?   @db.VarChar(255)
+  city           String?   @db.VarChar(50)
+  openTime       String?   @map("open_time") @db.VarChar(128)
+  price          Decimal?  @db.Decimal(10, 2)
+  priceNote      String?   @map("price_note") @db.VarChar(128)
+  intro          String?   @db.Text
+  suggestDuration String?  @map("suggest_duration") @db.VarChar(64)
+  lat            Decimal?  @db.Decimal(10, 7)
+  lng            Decimal?  @db.Decimal(10, 7)
+  bookingAppid   String?   @map("booking_appid") @db.VarChar(64)
+  bookingPath    String?   @map("booking_path") @db.VarChar(255)
+  bookingUrl     String?   @map("booking_url") @db.VarChar(512)
+  grade          String?   @db.VarChar(16)
+  cuisineType    String?   @map("cuisine_type") @db.VarChar(64)
+  avgCost        Decimal?  @map("avg_cost") @db.Decimal(10, 2)
+  rating         Decimal?  @db.Decimal(2, 1)
+  status         Int       @default(1) @db.UnsignedTinyInt
+  createdAt      DateTime  @default(now()) @map("created_at")
+  updatedAt      DateTime  @updatedAt @map("updated_at")
+  deletedAt      DateTime? @map("deleted_at")
+
+  destination Destination?  @relation(fields: [destinationId], references: [id])
+  articles    ArticlePoi[]
+
+  @@map("poi")
+}
+
+model Article {
+  id          BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  title       String    @db.VarChar(200)
+  coverUrl    String?   @map("cover_url") @db.VarChar(512)
+  contentType String    @map("content_type") @db.VarChar(32)
+  contentHtml String?   @map("content_html") @db.MediumText
+  wechatUrl   String?   @map("wechat_url") @db.VarChar(512)
+  wechatMsgId String?   @unique @map("wechat_msg_id") @db.VarChar(64)
+  tagsJson    Json?     @map("tags_json")
+  priceLabel  String?   @map("price_label") @db.VarChar(32)
+  bookingPath String?   @map("booking_path") @db.VarChar(255)
+  author      String?   @db.VarChar(64)
+  publishedAt DateTime? @map("published_at")
+  status      Int       @default(1) @db.UnsignedTinyInt
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @updatedAt @map("updated_at")
+  deletedAt   DateTime? @map("deleted_at")
+
+  pois   ArticlePoi[]
+  routes ArticleRoute[]
+
+  @@map("article")
+}
+
+model ArticlePoi {
+  id        BigInt   @id @default(autoincrement()) @db.UnsignedBigInt
+  articleId BigInt   @map("article_id") @db.UnsignedBigInt
+  poiId     BigInt   @map("poi_id") @db.UnsignedBigInt
+  sortOrder Int      @default(0) @map("sort_order")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  article Article @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  poi     Poi     @relation(fields: [poiId], references: [id], onDelete: Cascade)
+
+  @@unique([articleId, poiId])
+  @@map("article_poi")
+}
+
+model ArticleRoute {
+  id        BigInt   @id @default(autoincrement()) @db.UnsignedBigInt
+  articleId BigInt   @map("article_id") @db.UnsignedBigInt
+  routeId   BigInt   @map("route_id") @db.UnsignedBigInt
+  sortOrder Int      @default(0) @map("sort_order")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  article Article       @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  route   RouteTemplate @relation(fields: [routeId], references: [id], onDelete: Cascade)
+
+  @@unique([articleId, routeId])
+  @@map("article_route")
+}
+
+model Banner {
+  id        BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  title     String?   @db.VarChar(128)
+  imageUrl  String    @map("image_url") @db.VarChar(512)
+  linkType  String    @map("link_type") @db.VarChar(32)
+  linkId    BigInt?   @map("link_id") @db.UnsignedBigInt
+  linkPath  String?   @map("link_path") @db.VarChar(255)
+  sortOrder Int       @default(0) @map("sort_order")
+  startAt   DateTime? @map("start_at")
+  endAt     DateTime? @map("end_at")
+  status    Int       @default(1) @db.UnsignedTinyInt
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+
+  @@map("banner")
+}
+
+model HomeHotDestination {
+  id              BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  destinationId   BigInt    @map("destination_id") @db.UnsignedBigInt
+  coverOverride   String?   @map("cover_override") @db.VarChar(512)
+  sortOrder       Int       @default(0) @map("sort_order")
+  status          Int       @default(1) @db.UnsignedTinyInt
+  createdAt       DateTime  @default(now()) @map("created_at")
+  updatedAt       DateTime  @updatedAt @map("updated_at")
+  deletedAt       DateTime? @map("deleted_at")
+
+  destination Destination @relation(fields: [destinationId], references: [id], onDelete: Cascade)
+
+  @@unique([destinationId])
+  @@map("home_hot_destination")
+}
+
+model HomeHotRoute {
+  id            BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  routeId       BigInt    @map("route_id") @db.UnsignedBigInt
+  coverOverride String?   @map("cover_override") @db.VarChar(512)
+  sortOrder     Int       @default(0) @map("sort_order")
+  status        Int       @default(1) @db.UnsignedTinyInt
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @updatedAt @map("updated_at")
+  deletedAt     DateTime? @map("deleted_at")
+
+  route RouteTemplate @relation(fields: [routeId], references: [id], onDelete: Cascade)
+
+  @@unique([routeId])
+  @@map("home_hot_route")
+}

@@ -1,0 +1,7 @@
+<button
+  class="c-button btn-{{type}} {{block ? 'btn-block' : ''}}"
+  disabled="{{disabled}}"
+  bindtap="onTap"
+>
+  <slot>{{text}}</slot>
+</button>

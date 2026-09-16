@@ -1,0 +1,14 @@
+<view class="c-input">
+  <input
+    class="c-input__field"
+    value="{{value}}"
+    placeholder="{{placeholder}}"
+    placeholder-class="c-input__placeholder"
+    confirm-type="search"
+    bindinput="onInput"
+    bindconfirm="onConfirm"
+  />
+  <view wx:if="{{showSearchBtn}}" class="c-input__btn flex-center" bindtap="onSearchTap">
+    <image class="c-input__icon" src="/static/images/icon/search.png" mode="aspectFit" />
+  </view>
+</view>

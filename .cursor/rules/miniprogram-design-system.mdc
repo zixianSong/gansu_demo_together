@@ -1,0 +1,40 @@
+---
+description: 微信小程序 UI 必须遵循设计系统 token，禁止硬编码色值与尺寸
+globs: miniprogram/**/*.{wxml,wxss,ts,json}
+alwaysApply: false
+---
+
+# 微信小程序设计系统（强制）
+
+完整规范见 `docs/miniprogram-design-system.md`。CSS 变量唯一来源：`miniprogram/app.wxss`。
+
+## 必须遵守
+
+1. **禁止硬编码**：页面/组件 wxss 中不得写 `#RRGGBB`、`32rpx` 等字面量（`app.wxss` 定义 token 除外）。
+2. **使用变量**：颜色 `var(--text-*)` / `var(--fill-*)` / `var(--color-*)`；字号 `var(--font-size-*)`；圆角 `var(--radius-*)`；边距 `var(--page-padding-horizontal)`。
+3. **按钮**：优先用 `.btn-primary`、`.btn-modal`、`.btn-secondary`、`.btn-small`、`.btn-small-alt`。
+4. **工具类**：文字省略 `.text-ellipsis`；布局 `.flex-center`、`.flex-column`；卡片 `.card`、`.page-container`。
+5. **冲突优先级**：MasterGo 设计稿与规范冲突时，**以设计系统文档为准**。
+6. **目录结构**：页面在 `pages/`，接口在 `api/modules/`，组件在 `components/`，静态资源在 `static/`。
+
+## 示例
+
+```css
+/* ✅ */
+.title {
+  font-size: var(--font-size-title);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+}
+.page {
+  background-color: var(--fill-body);
+  padding: 0 var(--page-padding-horizontal);
+}
+
+/* ❌ */
+.title { font-size: 36rpx; color: #333; }
+```
+
+## 提交前自检
+
+改完 `miniprogram/**` 后，确认 wxss 无硬编码 hex/rpx 字面量（token 定义文件除外）。

@@ -1,0 +1,338 @@
+/* MasterGo 3:843 首页 — 对齐 design-output / newprogram tokens */
+/* token: paint_3:844 page bg #F5F5F5 */
+page {
+  background: #F5F5F5;
+  height: 100%;
+}
+
+.page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #F5F5F5;
+}
+
+/* token: paint_3:387 search wrap #FFFFFF */
+.search-wrap {
+  background: #FFFFFF;
+  padding: 20rpx;
+  flex-shrink: 0;
+}
+
+/* token: paint_3:931 #F0F0F0 */
+.search-bar {
+  height: 76rpx;
+  background: #F0F0F0;
+  border-radius: 38rpx;
+  padding: 10rpx 20rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/* token: paint_3:950 #808080 */
+.search-placeholder {
+  flex: 1;
+  padding: 0 20rpx;
+  color: #808080;
+  font-size: 28rpx;
+  line-height: 40rpx;
+}
+
+/* token: paint_3:889 #007AFF */
+.search-btn {
+  width: 76rpx;
+  height: 56rpx;
+  background: #007AFF;
+  border-radius: 28rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.search-icon {
+  width: 28rpx;
+  height: 28rpx;
+}
+
+.main-scroll {
+  flex: 1;
+  height: 0;
+}
+
+.banner {
+  width: 750rpx;
+  height: 300rpx;
+}
+
+.banner-img {
+  width: 750rpx;
+  height: 300rpx;
+}
+
+/* token: paint_3:529 #FFFFFF + shadow */
+.card {
+  margin: 20rpx;
+  background: #FFFFFF;
+  border-radius: 20rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+}
+
+.category-card {
+  margin-top: 20rpx;
+  padding: 30rpx 20rpx;
+  display: flex;
+  flex-direction: row;
+}
+
+.category-item {
+  width: 167.5rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.category-icon {
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.category-name {
+  margin-top: 10rpx;
+  color: #333333;
+  font-size: 24rpx;
+  line-height: 33rpx;
+}
+
+.trip-card {
+  padding: 20rpx;
+}
+
+.section-head {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.section-title {
+  color: #333333;
+  font-size: 32rpx;
+  font-weight: 700;
+  line-height: 45rpx;
+}
+
+.section-more {
+  color: #888888;
+  font-size: 24rpx;
+  line-height: 33rpx;
+}
+
+.trip-scroll {
+  width: 100%;
+  white-space: nowrap;
+}
+
+.trip-list {
+  display: inline-flex;
+  flex-direction: row;
+  gap: 20rpx;
+}
+
+.trip-item {
+  width: 400rpx;
+  height: 140rpx;
+  background: #F9F9F9;
+  border-radius: 15rpx;
+  padding: 15rpx;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.trip-title {
+  color: #333333;
+  font-size: 28rpx;
+  font-weight: 700;
+  line-height: 39rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.trip-time {
+  color: #666666;
+  font-size: 24rpx;
+  line-height: 33rpx;
+}
+
+.trip-city {
+  color: #999999;
+  font-size: 24rpx;
+  line-height: 33rpx;
+}
+
+.hot-row {
+  margin: 0 20rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 8rpx;
+}
+
+.hot-panel {
+  width: 345rpx;
+  min-height: 304rpx;
+  background: #FFFFFF;
+  border-radius: 20rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  padding-bottom: 20rpx;
+  box-sizing: border-box;
+}
+
+.hot-head {
+  padding: 20rpx 20rpx 12rpx;
+}
+
+.hot-title {
+  color: #3D3D3D;
+  font-size: 32rpx;
+  font-weight: 700;
+}
+
+.hot-grid {
+  margin: 0 16rpx;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  row-gap: 12rpx;
+}
+
+.hot-cell {
+  position: relative;
+  width: 150rpx;
+  height: 92rpx;
+  overflow: hidden;
+  border-radius: 8rpx;
+  flex-shrink: 0;
+}
+
+.hot-cover {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.hot-label {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding: 0 4rpx 4rpx;
+  color: #FFFFFF;
+  font-size: 24rpx;
+  font-weight: 700;
+  line-height: 33rpx;
+  text-shadow: 0 1rpx 2rpx rgba(0, 0, 0, 0.35);
+}
+
+.hot-label-sm {
+  font-size: 20rpx;
+  line-height: 33rpx;
+}
+
+.feed {
+  margin: 20rpx 10rpx 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.feed-col {
+  width: 355rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.feed-card {
+  background: #FFFFFF;
+  border-radius: 20rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.feed-cover {
+  width: 355rpx;
+  height: 250rpx;
+}
+
+.feed-body {
+  padding: 20rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.feed-title {
+  color: #333333;
+  font-size: 28rpx;
+  font-weight: 700;
+  line-height: 40rpx;
+}
+
+.feed-tags {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10rpx;
+}
+
+.feed-tag {
+  background: #F0F0F0;
+  border-radius: 10rpx;
+  padding: 6rpx 12rpx;
+  color: #666666;
+  font-size: 20rpx;
+  line-height: 27rpx;
+}
+
+.safe-bottom {
+  height: calc(100rpx + 40rpx);
+}
+
+/* AI 悬浮球 — design 87×85 @ (272, 663) */
+.ai-float {
+  position: fixed;
+  right: 32rpx;
+  bottom: calc(118rpx + env(safe-area-inset-bottom));
+  width: 174rpx;
+  height: 170rpx;
+  z-index: 20;
+}
+
+.ai-avatar {
+  position: absolute;
+  left: 0;
+  top: 10rpx;
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+  border: 2rpx solid #000000;
+  box-sizing: border-box;
+}
+
+.ai-badge {
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: #007AFF;
+  font-size: 48rpx;
+  font-weight: 700;
+  line-height: 48rpx;
+}

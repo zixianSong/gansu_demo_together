@@ -1,0 +1,52 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/article/detail",
+    "pages/poi/detail",
+    "pages/xingchengguanli/xingchengguanli",
+    "pages/fuwu/fuwu",
+    "pages/wode/wode"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "首页",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "color": "#A6A6A6",
+    "selectedColor": "#1677FF",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "static/images/icon/tab-home.png",
+        "selectedIconPath": "static/images/icon/tab-home-active.png"
+      },
+      {
+        "pagePath": "pages/xingchengguanli/xingchengguanli",
+        "text": "行程管理",
+        "iconPath": "static/images/icon/tab-trip.png",
+        "selectedIconPath": "static/images/icon/tab-trip-active.png"
+      },
+      {
+        "pagePath": "pages/fuwu/fuwu",
+        "text": "服务",
+        "iconPath": "static/images/icon/tab-scenic.png",
+        "selectedIconPath": "static/images/icon/tab-scenic-active.png"
+      },
+      {
+        "pagePath": "pages/wode/wode",
+        "text": "我的",
+        "iconPath": "static/images/icon/tab-mine.png",
+        "selectedIconPath": "static/images/icon/tab-mine-active.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "componentFramework": "glass-easel",
+  "lazyCodeLoading": "requiredComponents",
+  "sitemapLocation": "sitemap.json"
+}

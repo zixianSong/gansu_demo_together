@@ -1,0 +1,17 @@
+# compiled output
+/dist
+/node_modules
+/build
+
+# env
+.env
+.env.local
+
+# logs / ide
+*.log
+.idea
+.vscode
+*.tsbuildinfo
+
+# prisma
+/prisma/*.db

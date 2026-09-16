@@ -1,0 +1,40 @@
+# Dependencies
+node_modules/
+miniprogram_npm/
+**/node_modules/
+
+# Env & secrets
+.env
+.env.*
+!.env.example
+**/.env
+!**/.env.example
+
+# Build / cache
+dist/
+build/
+coverage/
+.cache/
+*.tsbuildinfo
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# WeChat private local config
+project.private.config.json
+
+# Local MasterGo / design pull scratch (large / machine-specific)
+tools/
+.mastergo/
+
+# Prisma
+server/prisma/*.db
+server/prisma/*.db-journal

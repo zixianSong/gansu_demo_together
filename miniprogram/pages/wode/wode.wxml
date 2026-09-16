@@ -1,0 +1,21 @@
+<view class="page page-container">
+  <view class="profile-card">
+    <image class="avatar" src="{{userInfo.avatarUrl}}" mode="aspectFill" />
+    <view class="profile-info">
+      <text class="nickname">{{userInfo.nickName || '游客'}}</text>
+      <text class="desc">探索甘肃，发现美好旅途</text>
+    </view>
+    <c-button type="secondary" text="编辑资料" bind:tap="onEditProfile" />
+  </view>
+
+  <view class="menu-card">
+    <view class="menu-item" wx:for="{{menuList}}" wx:key="title" data-title="{{item.title}}" bindtap="onMenuTap">
+      <text class="menu-title">{{item.title}}</text>
+      <text class="menu-arrow">></text>
+    </view>
+  </view>
+
+  <view class="action-wrap">
+    <c-button type="primary" text="联系客服" block bind:tap="onContact" />
+  </view>
+</view>

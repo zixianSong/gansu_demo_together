@@ -1,0 +1,12 @@
+<view class="c-tab">
+  <view
+    class="c-tab__item {{activeIndex === index ? 'c-tab__item--active' : ''}}"
+    wx:for="{{tabs}}"
+    wx:for-index="index"
+    wx:key="name"
+    data-index="{{index}}"
+    bindtap="onTabTap"
+  >
+    <text class="c-tab__text">{{item.name}}</text>
+  </view>
+</view>

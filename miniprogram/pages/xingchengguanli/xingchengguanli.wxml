@@ -1,0 +1,14 @@
+<view class="page page-container">
+  <view class="trip-card" wx:for="{{tripList}}" wx:key="id">
+    <view class="trip-head">
+      <text class="trip-date">{{item.date}}</text>
+      <text class="trip-status">{{item.status}}</text>
+    </view>
+    <text class="trip-title">{{item.title}}</text>
+    <text class="trip-time">{{item.time}}</text>
+    <text class="trip-city">{{item.city}}</text>
+  </view>
+  <view class="empty" wx:if="{{!tripList.length}}">
+    <text class="empty-text">暂无行程，去首页看看吧</text>
+  </view>
+</view>

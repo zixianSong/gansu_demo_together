@@ -1,0 +1,178 @@
+/* ========================================
+   1. 全局样式重置 & 基础设置
+   ======================================== */
+page {
+  --font-family: 'PingFang SC', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  --font-family-number: 'DIN', 'PingFang SC', sans-serif;
+  --bg-page: #F8F8F8;
+  --color-white: #FFFFFF;
+
+  font-family: var(--font-family);
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+/* ========================================
+   2. 颜色系统 (Color Tokens)
+   ======================================== */
+page {
+  --color-primary-blue: #1677FF;
+  --color-primary-yellow: #FFAC00;
+  --color-danger: #FA5151;
+  --color-warning: #FA9D3B;
+  --color-success: #B3F0DC;
+  --color-info: #D1E5FF;
+
+  --text-primary: #000000;
+  --text-secondary: #515151;
+  --text-annotation: #A6A6A6;
+  --text-disabled: #D8D8D8;
+
+  --fill-body: #F8F8F8;
+  --fill-base: #F2F2F2;
+
+  /* 遮罩、阴影（弹层/卡片复用） */
+  --overlay-mask: rgba(0, 0, 0, 0.85);
+  --shadow-card: 0 4rpx 16rpx rgba(0, 0, 0, 0.05);
+}
+
+/* ========================================
+   3. 文字系统 (Typography Tokens)
+   ======================================== */
+page {
+  --font-size-extra-large: 48rpx;
+  --font-size-title: 36rpx;
+  --font-size-heading: 32rpx;
+  --font-size-body-large: 30rpx;
+  --font-size-body: 28rpx;
+  --font-size-secondary: 26rpx;
+  --font-size-caption: 22rpx;
+  --font-size-tag: 20rpx;
+
+  --font-weight-bold: 700;
+  --font-weight-medium: 500;
+  --font-weight-regular: 400;
+}
+
+/* ========================================
+   4. 尺寸与间距 (Spacing & Layout)
+   ======================================== */
+page {
+  --page-padding-horizontal: 32rpx;
+  --nav-height: 94rpx;
+  --tabbar-height: 100rpx;
+  --icon-size-base: 48rpx;
+}
+
+/* ========================================
+   5. 圆角系统 (Border Radius)
+   ======================================== */
+page {
+  --radius-small: 8rpx;
+  --radius-medium: 16rpx;
+  --radius-large: 32rpx;
+}
+
+/* ========================================
+   6. 按钮规范
+   ======================================== */
+.btn-primary {
+  width: 630rpx;
+  height: 88rpx;
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-medium);
+  background-color: var(--color-primary-blue);
+  color: var(--color-white);
+  border-radius: var(--radius-medium);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-modal {
+  width: 486rpx;
+  height: 88rpx;
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-regular);
+  background-color: var(--color-primary-blue);
+  color: var(--color-white);
+  border-radius: var(--radius-medium);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-secondary {
+  height: 68rpx;
+  padding: 0 var(--page-padding-horizontal);
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-regular);
+  background-color: transparent;
+  color: var(--color-primary-blue);
+  border: 2rpx solid var(--color-primary-blue);
+  border-radius: var(--radius-small);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-small {
+  height: 52rpx;
+  padding: 0 24rpx;
+  font-size: var(--font-size-tag);
+  font-weight: var(--font-weight-regular);
+  background-color: var(--color-primary-blue);
+  color: var(--color-white);
+  border-radius: var(--radius-small);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-small-alt {
+  height: 56rpx;
+  padding: 0 24rpx;
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-regular);
+  background-color: var(--fill-base);
+  color: var(--text-secondary);
+  border-radius: var(--radius-small);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ========================================
+   7. 通用工具类
+   ======================================== */
+.text-ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.card {
+  margin: 20rpx var(--page-padding-horizontal);
+  background-color: var(--color-white);
+  border-radius: var(--radius-medium);
+  box-shadow: var(--shadow-card);
+}
+
+.page-container {
+  min-height: 100vh;
+  background-color: var(--fill-body);
+  box-sizing: border-box;
+}

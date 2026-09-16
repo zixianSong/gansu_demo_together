@@ -1,0 +1,32 @@
+<view class="page page-container">
+  <view class="search-wrap">
+    <c-input
+      value="{{keyword}}"
+      placeholder="搜索甘肃景点..."
+      bind:input="onKeywordInput"
+      bind:search="onSearch"
+    />
+  </view>
+
+  <c-tab tabs="{{cityTabs}}" active-index="{{activeTabIndex}}" bind:change="onTabChange" />
+
+  <scroll-view class="list-scroll" scroll-y enhanced show-scrollbar="{{false}}">
+    <view class="spot-list">
+      <view class="spot-card" wx:for="{{filteredList}}" wx:key="id" data-id="{{item.id}}" bindtap="onSpotTap">
+        <image class="spot-cover" src="{{item.cover}}" mode="aspectFill" />
+        <view class="spot-info">
+          <text class="spot-name text-ellipsis">{{item.name}}</text>
+          <text class="spot-city">{{item.city}}</text>
+          <view class="spot-tags" wx:if="{{item.tags && item.tags.length}}">
+            <text class="spot-tag" wx:for="{{item.tags}}" wx:for-item="tag" wx:key="*this">{{tag}}</text>
+          </view>
+          <text class="spot-price" wx:if="{{item.price}}">¥{{item.price}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="empty" wx:if="{{!filteredList.length}}">
+      <text class="empty-text">暂无相关景点</text>
+    </view>
+    <view class="safe-bottom"></view>
+  </scroll-view>
+</view>
