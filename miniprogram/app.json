@@ -4,6 +4,16 @@
     "pages/article/detail",
     "pages/poi/detail",
     "pages/xingchengguanli/xingchengguanli",
+    "pages/itinerary/map/index",
+    "pages/itinerary/singleday/index",
+    "pages/itinerary/overview/index",
+    "pages/itinerary/adjust-chat/index",
+    "pages/itinerary/adjust-plan/index",
+    "pages/itinerary/plans/index",
+    "pages/itinerary/plans-new/index",
+    "pages/itinerary/plans-switch/index",
+    "pages/itinerary/summary-reviewing/index",
+    "pages/itinerary/summary-report/index",
     "pages/fuwu/fuwu",
     "pages/wode/wode"
   ],
@@ -48,5 +58,11 @@
   "style": "v2",
   "componentFramework": "glass-easel",
   "lazyCodeLoading": "requiredComponents",
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "permission": {
+    "scope.userLocation": {
+      "desc": "用于行程中感知你与下一站的位置关系"
+    }
+  },
+  "requiredPrivateInfos": ["getLocation"]
 }

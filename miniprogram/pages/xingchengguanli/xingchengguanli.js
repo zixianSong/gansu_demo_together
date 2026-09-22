@@ -1,22 +1,66 @@
+// pages/xingchengguanli/xingchengguanli.js
 Page({
+
+  /**
+   * 页面的初始数据
+   */
   data: {
-    tripList: [
-      {
-        id: '1',
-        date: '今天',
-        status: '进行中',
-        title: '敦煌莫高窟',
-        time: '10:00-12:00',
-        city: '敦煌市',
-      },
-      {
-        id: '2',
-        date: '明天',
-        status: '待出发',
-        title: '张掖丹霞地质公园一日游',
-        time: '09:00-17:00',
-        city: '张掖市',
-      },
-    ],
+
   },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad(options) {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady() {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow() {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide() {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload() {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh() {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom() {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage() {
+
+  }
 })

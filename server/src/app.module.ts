@@ -8,18 +8,22 @@ import { ArticlesModule } from './articles/articles.module';
 import { PoisModule } from './pois/pois.module';
 import { RoutesModule } from './routes/routes.module';
 import { SearchModule } from './search/search.module';
+import { MineModule } from './mine/mine.module';
+import { ItineraryModule } from './itinerary/itinerary.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
     PrismaModule,
     RedisModule,
+    MineModule,
     HealthModule,
     HomeModule,
     ArticlesModule,
     PoisModule,
     RoutesModule,
     SearchModule,
+    ItineraryModule,
   ],
 })
 export class AppModule {}

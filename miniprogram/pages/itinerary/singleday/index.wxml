@@ -1,0 +1,52 @@
+<view class="page">
+  <itinerary-chrome active="singleday" bind:restored="load" />
+
+  <view class="day-switch">
+    <view class="day-switch__btn" bindtap="prev">‹</view>
+    <view class="day-switch__center">
+      <view class="day-switch__date">{{title}}</view>
+      <view class="day-switch__meta">{{subtitle}}</view>
+    </view>
+    <view class="day-switch__btn" bindtap="next">›</view>
+  </view>
+
+  <view class="weather">
+    <view class="weather__pin">📍</view>
+    <view class="weather__main">
+      <view class="weather__temp"><text class="weather__num">{{weatherTemp}}</text><text>°C</text></view>
+      <view class="weather__desc">{{weatherCity}} · {{weatherText}}</view>
+    </view>
+  </view>
+
+  <view class="empty" wx:if="{{!items.length}}">当日暂无行程</view>
+
+  <view class="schedule">
+    <block wx:for="{{items}}" wx:key="id">
+      <view class="slot-time">{{item.timeLabel || '--:--'}}</view>
+      <view class="event event--{{item.kind}}" data-id="{{item.poiId}}" bindtap="openPoi">
+        <view class="event__head">
+          <view class="event__type">{{item.type || '行程'}}</view>
+          <view class="badge" wx:if="{{item.completed}}">已完成</view>
+        </view>
+        <view class="cover" wx:if="{{item.kind === 'spot'}}">{{item.name}}</view>
+        <view class="event__title" wx:else>{{item.name}}</view>
+        <view class="event__meta" wx:if="{{item.poiAddress}}">{{item.poiAddress}}</view>
+        <view class="event__meta" wx:if="{{item.endLabel}}">至 {{item.endLabel}}</view>
+      </view>
+    </block>
+  </view>
+
+  <view class="suggest" wx:if="{{showSuggest}}">
+    <view class="suggest__head">
+      <view class="suggest__mark">✦</view>
+      <view>
+        <view class="suggest__title">智能行程建议</view>
+        <view class="suggest__text">{{hint.message}}</view>
+      </view>
+    </view>
+    <view class="suggest__actions">
+      <view class="btn-apply" bindtap="goAdjust">应用建议</view>
+      <view class="btn-ignore" bindtap="closeSuggest">忽略</view>
+    </view>
+  </view>
+</view>

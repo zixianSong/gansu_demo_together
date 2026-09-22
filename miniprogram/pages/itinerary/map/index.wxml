@@ -1,0 +1,55 @@
+<view class="page">
+  <itinerary-chrome active="map" bind:restored="load" />
+
+  <view class="day-switch" wx:if="{{days.length}}">
+    <view class="day-switch__btn" bindtap="prev">‹</view>
+    <view class="day-switch__center">
+      <view class="day-switch__date">{{title}}</view>
+      <view class="day-switch__meta">{{subtitle}}</view>
+    </view>
+    <view class="day-switch__btn" bindtap="next">›</view>
+  </view>
+
+  <scroll-view class="days" scroll-x enhanced show-scrollbar="{{false}}" wx:if="{{dayChips.length}}">
+    <view
+      class="days__item {{dayIndex === index ? 'is-on' : ''}}"
+      wx:for="{{dayChips}}"
+      wx:key="index"
+      data-index="{{index}}"
+      bindtap="pickDay"
+    >
+      <view>Day {{item.dayNumber}}</view>
+      <view class="days__date">{{item.shortDate}}</view>
+    </view>
+  </scroll-view>
+
+  <view class="map-stage">
+    <map
+      id="itinMap"
+      class="map"
+      latitude="{{latitude}}"
+      longitude="{{longitude}}"
+      scale="{{scale}}"
+      markers="{{markers}}"
+      polyline="{{polyline}}"
+      show-location
+      enable-zoom
+      enable-scroll
+      include-points="{{includePoints}}"
+      bindmarkertap="onMarkerTap"
+    />
+  </view>
+
+  <view class="sheet" wx:if="{{picked}}">
+    <view class="sheet__handle"></view>
+    <view class="sheet__row" data-id="{{picked.poiId}}" bindtap="openPoi">
+      <view class="sheet__badge">{{picked.type || '行程'}}</view>
+      <view class="sheet__body">
+        <view class="sheet__title">{{picked.name}}</view>
+        <view class="sheet__meta" wx:if="{{picked.timeLabel}}">{{picked.timeLabel}}</view>
+        <view class="sheet__meta" wx:if="{{picked.poiAddress}}">{{picked.poiAddress}}</view>
+      </view>
+      <view class="sheet__more">›</view>
+    </view>
+  </view>
+</view>

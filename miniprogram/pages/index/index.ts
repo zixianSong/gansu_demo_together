@@ -84,11 +84,11 @@ Page({
   },
 
   onTripTap() {
-    wx.showToast({ title: '即将上线', icon: 'none' })
+    wx.switchTab({ url: '/pages/xingchengguanli/xingchengguanli' })
   },
 
   onAiTap() {
-    wx.showToast({ title: '即将上线', icon: 'none' })
+    wx.navigateTo({ url: '/pages/itinerary/adjust-chat/index' })
   },
 
   onBannerTap(e: WechatMiniprogram.TouchEvent) {

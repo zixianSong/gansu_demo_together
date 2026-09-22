@@ -1,0 +1,15 @@
+<view class="page">
+  <view class="tabs">
+    <text class="on">回顾中</text>
+    <text bindtap="goReport">总结报告</text>
+  </view>
+  <view class="card">
+    <view class="card__title">{{name}}</view>
+    <view class="meta">{{summary}}</view>
+    <view class="meta">阶段：{{phase}} {{canAdjust ? '' : '（已结束，不可再调整）'}}</view>
+  </view>
+  <view class="card" wx:for="{{items}}" wx:key="id">
+    <view>{{item.name}}</view>
+    <view class="meta">{{item.completed ? '已完成' : '未完成'}}</view>
+  </view>
+</view>

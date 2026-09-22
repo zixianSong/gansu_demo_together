@@ -1,14 +1,83 @@
-<view class="page page-container">
-  <view class="trip-card" wx:for="{{tripList}}" wx:key="id">
-    <view class="trip-head">
-      <text class="trip-date">{{item.date}}</text>
-      <text class="trip-status">{{item.status}}</text>
+<view class="page">
+  <itinerary-chrome active="multiday" bind:restored="load" />
+
+  <view class="alert" wx:if="{{hint}}">
+    <view class="alert__icon">!</view>
+    <view class="alert__body">
+      <view class="alert__text">{{hint.message}}</view>
+      <view class="alert__actions">
+        <view class="alert__btn" bindtap="goAdjust">智能调整</view>
+        <view class="alert__more" wx:if="{{hint.extraCount}}" bindtap="goAdjust">另有 {{hint.extraCount}} 项偏差待处理 ›</view>
+      </view>
     </view>
-    <text class="trip-title">{{item.title}}</text>
-    <text class="trip-time">{{item.time}}</text>
-    <text class="trip-city">{{item.city}}</text>
   </view>
-  <view class="empty" wx:if="{{!tripList.length}}">
-    <text class="empty-text">暂无行程，去首页看看吧</text>
+
+  <view class="date-row" wx:if="{{plan}}">
+    <view class="map-fab" bindtap="goMap" aria-role="button" aria-label="打开地图">
+      <view class="map-fab__pin"></view>
+    </view>
+    <view class="date-card">
+      <view class="date-card__left">
+        <view class="date-card__icon">日</view>
+        <view>
+          <view class="date-card__label">行程日期</view>
+          <view class="date-card__range">
+            <text>{{dateStart}}</text>
+            <text class="date-card__sep">›</text>
+            <text>{{dateEnd}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="optimize" wx:if="{{hint}}" bindtap="goAdjust">
+        <text class="optimize__badge" wx:if="{{optimizeCount}}">{{optimizeCount}}</text>
+        <text>可优化</text>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{!days.length}}" class="empty">暂无当前方案，点下方「添加行程」用 AI 生成</view>
+
+  <view class="timeline" wx:if="{{days.length}}">
+    <view class="day" wx:for="{{days}}" wx:key="id">
+      <view class="day__rail">
+        <view class="day__dot"></view>
+        <view class="day__line" wx:if="{{index < days.length - 1}}"></view>
+      </view>
+      <view class="day__body">
+        <view class="day__head">
+          <view class="day__title">
+            <text class="day__name">Day {{item.dayNumber}}</text>
+            <text class="day__date">{{item.dateLabel}}</text>
+          </view>
+          <text class="day__more">▾</text>
+        </view>
+        <view class="day-card">
+          <block wx:for="{{item.items}}" wx:for-item="node" wx:key="id">
+            <view wx:if="{{node.kind === 'transit'}}" class="transport">
+              <view class="mode">
+                <view class="mode__icon">交</view>
+                <view class="mode__label">{{node.type || '交通'}}</view>
+              </view>
+              <view class="transport__info">
+                <view class="transport__plan">{{node.goHint || node.timeLabel || node.name}}</view>
+                <view class="transport__name">{{node.name}}</view>
+              </view>
+            </view>
+            <view wx:else class="spot" data-id="{{node.poiId}}" bindtap="openPoi">
+              <view class="spot-cover {{node.coverClass}}" style="{{node.coverStyle}}">{{node.name}}</view>
+              <view class="spot-meta">
+                <view class="spot-meta__item">{{node.timeLabel || '全天开放'}}</view>
+                <view class="spot-meta__item" wx:if="{{node.playHint}}">{{node.playHint}}</view>
+                <view class="spot-hint" wx:if="{{node.goHint}}">{{node.goHint}}</view>
+              </view>
+            </view>
+          </block>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="footer">
+    <view class="footer__btn" bindtap="goAdjust">{{footerLabel}}</view>
   </view>
 </view>

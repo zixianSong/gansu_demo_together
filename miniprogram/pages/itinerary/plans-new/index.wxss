@@ -1,0 +1,10 @@
+@import '../../../styles/itinerary.wxss';
+.choice {
+  display: flex;
+  gap: 12px;
+  margin: 16px;
+}
+.choice .card {
+  flex: 1;
+  margin: 0;
+}

@@ -1,4 +1,9 @@
 {
-  "navigationBarTitleText": "行程管理",
-  "usingComponents": {}
+  "navigationStyle": "custom",
+  "navigationBarTextStyle": "black",
+  "navigationBarBackgroundColor": "#FFFFFF",
+  "backgroundColor": "#F7F7F8",
+  "usingComponents": {
+    "itinerary-chrome": "/components/itinerary-chrome/itinerary-chrome"
+  }
 }

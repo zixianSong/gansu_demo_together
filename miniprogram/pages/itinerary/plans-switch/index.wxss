@@ -1,0 +1,15 @@
+@import '../../../styles/itinerary.wxss';
+
+page,
+.page {
+  background: #f5f0e8;
+  min-height: 100vh;
+}
+
+.card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 16px;
+  margin: 16px;
+  box-shadow: 0 4px 16px rgba(53, 50, 60, 0.06);
+}

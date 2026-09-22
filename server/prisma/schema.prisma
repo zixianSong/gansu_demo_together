@@ -78,10 +78,105 @@ model Poi {
   updatedAt      DateTime  @updatedAt @map("updated_at")
   deletedAt      DateTime? @map("deleted_at")
 
-  destination Destination?  @relation(fields: [destinationId], references: [id])
-  articles    ArticlePoi[]
+  destination     Destination?     @relation(fields: [destinationId], references: [id])
+  articles        ArticlePoi[]
+  itineraryItems  ItineraryItem[]
 
   @@map("poi")
+}
+
+/// 用户行程方案（行程管理）。userId 对接「我的」模块，本模块不维护 users 表。
+model Plan {
+  id                 BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  userId             BigInt    @map("user_id") @db.UnsignedBigInt
+  name               String?   @db.VarChar(255)
+  attractionSummary  String?   @map("attraction_summary") @db.VarChar(255)
+  planStatus         String    @default("draft") @map("plan_status") @db.VarChar(32)
+  startDate          DateTime? @map("start_date")
+  endDate            DateTime? @map("end_date")
+  cities             Json?
+  analytics          Json?
+  badges             Json?
+  createdAt          DateTime  @default(now()) @map("created_at")
+  updatedAt          DateTime  @updatedAt @map("updated_at")
+  deletedAt          DateTime? @map("deleted_at")
+
+  days         PlanDay[]
+  snapshots    PlanSnapshot[]
+  conversations AiConversation[]
+
+  @@index([userId, planStatus], map: "idx_user_plan_status")
+  @@index([endDate], map: "idx_end_date")
+  @@map("plans")
+}
+
+model PlanDay {
+  id        BigInt   @id @default(autoincrement()) @db.UnsignedBigInt
+  planId    BigInt   @map("plan_id") @db.UnsignedBigInt
+  dayNumber Int?     @map("day_number")
+  date      DateTime? @db.Date
+  weather   Json?
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  plan  Plan            @relation(fields: [planId], references: [id], onDelete: Cascade)
+  items ItineraryItem[]
+
+  @@index([planId], map: "idx_plan_id")
+  @@map("plan_days")
+}
+
+model ItineraryItem {
+  id             BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  planDayId      BigInt    @map("plan_day_id") @db.UnsignedBigInt
+  sortOrder      Int       @default(0) @map("sort_order")
+  type           String?   @db.VarChar(32)
+  timeSlot       Int?      @map("time_slot") @db.UnsignedTinyInt
+  exactStartTime DateTime? @map("exact_start_time")
+  exactEndTime   DateTime? @map("exact_end_time")
+  name           String?   @db.VarChar(255)
+  photoUrl       String?   @map("photo_url") @db.VarChar(512)
+  latitude       Decimal?  @db.Decimal(10, 7)
+  longitude      Decimal?  @db.Decimal(10, 7)
+  poiId          BigInt?   @map("poi_id") @db.UnsignedBigInt
+  details        Json?
+  createdAt      DateTime  @default(now()) @map("created_at")
+  updatedAt      DateTime  @updatedAt @map("updated_at")
+
+  planDay PlanDay @relation(fields: [planDayId], references: [id], onDelete: Cascade)
+  poi     Poi?    @relation(fields: [poiId], references: [id], onDelete: SetNull)
+
+  @@index([planDayId, sortOrder], map: "idx_plan_day_sort")
+  @@index([poiId], map: "idx_item_poi")
+  @@map("itinerary_items")
+}
+
+model PlanSnapshot {
+  id           BigInt   @id @default(autoincrement()) @db.UnsignedBigInt
+  planId       BigInt   @map("plan_id") @db.UnsignedBigInt
+  snapshotData Json?    @map("snapshot_data")
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  plan Plan @relation(fields: [planId], references: [id], onDelete: Cascade)
+
+  @@index([planId], map: "idx_plan_snapshots_plan_id")
+  @@map("plan_snapshots")
+}
+
+model AiConversation {
+  id         BigInt   @id @default(autoincrement()) @db.UnsignedBigInt
+  planId     BigInt?  @map("plan_id") @db.UnsignedBigInt
+  userInput  String?  @map("user_input") @db.VarChar(512)
+  formData   Json?    @map("form_data")
+  aiResponse Json?    @map("ai_response")
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+
+  plan Plan? @relation(fields: [planId], references: [id], onDelete: SetNull)
+
+  @@index([planId], map: "idx_ai_conversations_plan_id")
+  @@map("ai_conversations")
 }
 
 model Article {
