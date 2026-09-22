@@ -1,0 +1,48 @@
+<view class="page-container profile-page">
+  <view class="avatar-edit">
+    <button class="avatar-btn" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar">
+      <image class="avatar" src="{{form.avatarUrl}}" mode="aspectFill" />
+      <view class="camera">拍</view>
+    </button>
+    <text class="change-text">点击更换头像</text>
+  </view>
+
+  <view class="form-card">
+    <view class="form-row">
+      <text class="label">昵称</text>
+      <input class="value-input" type="nickname" value="{{form.nickName}}" placeholder="请输入昵称" bindinput="onNickInput" />
+    </view>
+    <view class="form-row" bindtap="onSelectGender">
+      <text class="label">性别</text>
+      <view class="value-wrap">
+        <text class="value">{{form.gender}}</text>
+        <text class="arrow">›</text>
+      </view>
+    </view>
+    <picker mode="date" value="{{form.birthday}}" bindchange="onBirthdayChange">
+      <view class="form-row">
+        <text class="label">生日</text>
+        <view class="value-wrap">
+          <text class="value">{{form.birthday}}</text>
+          <text class="arrow">›</text>
+        </view>
+      </view>
+    </picker>
+    <view class="form-row">
+      <text class="label">手机号</text>
+      <text class="value">{{form.phone}}</text>
+    </view>
+    <view class="form-row">
+      <text class="label">邮箱</text>
+      <text class="value">{{form.email}}</text>
+    </view>
+    <view class="form-block">
+      <text class="label">个性签名</text>
+      <textarea class="bio" value="{{form.bio}}" maxlength="80" placeholder="写下你的旅行宣言" bindinput="onBioInput" />
+    </view>
+  </view>
+
+  <view class="save-bar">
+    <button class="btn-primary save-btn" bindtap="onSave">保存修改</button>
+  </view>
+</view>

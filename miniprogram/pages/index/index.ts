@@ -1,5 +1,7 @@
+import { ENABLE_REMOTE_API } from '../../api/base'
 import { fetchBanners, fetchFeed, type BannerItem, type FeedItem } from '../../api/modules/content'
 import { request } from '../../api/request'
+import { MOCK_BANNERS, MOCK_DESTINATIONS, MOCK_FEED, MOCK_ROUTES } from '../../data/home-mock'
 
 function splitFeed(list: FeedItem[]) {
   const leftFeed: FeedItem[] = []
@@ -36,12 +38,28 @@ Page({
     this.loadHome()
   },
 
+  applyMockHome() {
+    const { leftFeed, rightFeed } = splitFeed(MOCK_FEED)
+    this.setData({
+      banners: MOCK_BANNERS,
+      destinations: MOCK_DESTINATIONS,
+      routes: MOCK_ROUTES,
+      leftFeed,
+      rightFeed,
+      loadingFeed: false,
+    })
+  },
+
   async loadHome() {
+    if (!ENABLE_REMOTE_API) {
+      this.applyMockHome()
+      return
+    }
     this.setData({ loadingFeed: true })
     try {
       const [bannerRes, feedRes, destRes, routeRes] = await Promise.all([
         fetchBanners().catch(() => ({ list: [] as BannerItem[] })),
-        fetchFeed(1, 10),
+        fetchFeed(1, 10).catch(() => ({ list: [] as FeedItem[] })),
         request<{ list: Array<{ name: string; coverUrl: string | null }> }>({
           url: '/home/hot-destinations',
           method: 'GET',
@@ -92,6 +110,10 @@ Page({
   },
 
   onBannerTap(e: WechatMiniprogram.TouchEvent) {
+    if (!ENABLE_REMOTE_API) {
+      wx.showToast({ title: '详情需先启动后端', icon: 'none' })
+      return
+    }
     const item = e.currentTarget.dataset.item as BannerItem
     if (!item) return
     if (item.linkType === 'article' && item.linkId) {
@@ -112,6 +134,10 @@ Page({
   },
 
   onFeedTap(e: WechatMiniprogram.TouchEvent) {
+    if (!ENABLE_REMOTE_API) {
+      wx.showToast({ title: '详情需先启动后端', icon: 'none' })
+      return
+    }
     const id = Number(e.currentTarget.dataset.id)
     if (!id) return
     wx.navigateTo({ url: `/pages/article/detail?id=${id}` })

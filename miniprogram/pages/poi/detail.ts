@@ -33,6 +33,17 @@ Page({
         categoryLabel: CATEGORY_LABEL[poi.category] || poi.category,
       })
       wx.setNavigationBarTitle({ title: poi.name || '地点详情' })
+      try {
+        const mine = require('../../services/mine')
+        mine.reportFootprint(id, 1, {
+          title: poi.name,
+          coverUrl: poi.coverUrl,
+          address: poi.address,
+          cityName: poi.city,
+        })
+      } catch (reportErr) {
+        console.log('footprint skip', reportErr)
+      }
     } catch (e) {
       const message = e instanceof Error ? e.message : '加载失败'
       wx.showToast({ title: message, icon: 'none' })

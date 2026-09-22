@@ -32,6 +32,9 @@ export class AllExceptionsFilter implements ExceptionFilter {
       code = status;
       if (status === HttpStatus.NOT_FOUND) code = 404;
       if (status === HttpStatus.BAD_REQUEST) code = 400;
+      if (status === HttpStatus.UNAUTHORIZED) code = 401;
+      if (status === HttpStatus.FORBIDDEN) code = 403;
+      if (status === HttpStatus.CONFLICT) code = 409;
     } else if (exception instanceof Error) {
       console.error(exception);
       message = exception.message || message;

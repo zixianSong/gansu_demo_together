@@ -1,0 +1,104 @@
+.privacy-page {
+  padding-bottom: var(--space-xl);
+}
+
+.hero {
+  background-color: var(--color-privacy);
+  padding: var(--space-xl) var(--page-padding-horizontal);
+  text-align: center;
+}
+
+.hero-title {
+  display: block;
+  font-size: var(--font-size-title);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-on-primary);
+}
+
+.hero-desc {
+  display: block;
+  margin-top: var(--space-sm);
+  font-size: var(--font-size-caption);
+  color: var(--text-on-primary);
+}
+
+.hero-link {
+  display: block;
+  margin-top: var(--space-md);
+  font-size: var(--font-size-tag);
+  color: var(--text-on-primary);
+}
+
+.block {
+  margin-top: calc(0px - var(--header-overlap));
+  overflow: hidden;
+}
+
+.block + .block {
+  margin-top: var(--space-md);
+}
+
+.block-head {
+  padding: var(--space-lg);
+  display: flex;
+  align-items: center;
+  border-bottom: var(--hairline) solid var(--fill-base);
+}
+
+.bar {
+  width: var(--space-xs);
+  height: var(--space-lg);
+  background-color: var(--color-privacy);
+  border-radius: var(--radius-full);
+  margin-right: var(--space-sm);
+}
+
+.block-title {
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+}
+
+.item {
+  padding: var(--space-lg);
+  display: flex;
+  border-bottom: var(--hairline) solid var(--fill-base);
+}
+
+.icon {
+  width: var(--icon-lg);
+  height: var(--icon-lg);
+  border-radius: var(--radius-full);
+  background-color: var(--fill-privacy-icon);
+  flex-shrink: 0;
+}
+
+.item-body {
+  margin-left: var(--space-md);
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.item-title {
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+}
+
+.item-desc {
+  margin-top: var(--space-xs);
+  font-size: var(--font-size-caption);
+  color: var(--text-secondary);
+}
+
+.footer-link {
+  padding: var(--space-md) var(--space-lg);
+  font-size: var(--font-size-body);
+  color: var(--text-secondary);
+}
+
+.footer-link--blue {
+  color: var(--color-primary-blue);
+}

@@ -1,0 +1,40 @@
+<view class="page-container form-page">
+  <view class="card venue">
+    <text class="venue-title">{{place}}</text>
+    <text class="venue-addr">{{address}}</text>
+  </view>
+
+  <view class="card rating">
+    <text class="rating-q">您对本次出行满意吗？</text>
+    <view class="stars">
+      <text
+        class="star {{index < rating ? 'star--on' : ''}}"
+        wx:for="{{stars}}"
+        wx:key="*this"
+        wx:for-index="index"
+        data-index="{{index}}"
+        bindtap="onStar"
+      >★</text>
+    </view>
+    <text class="rating-label">{{ratingLabel}}</text>
+  </view>
+
+  <view class="card editor">
+    <textarea class="textarea" value="{{content}}" maxlength="200" placeholder="分享您的真实感受，帮助更多旅行者做出选择" bindinput="onInput" />
+    <text class="count">{{content.length}}/200</text>
+  </view>
+
+  <view class="card media">
+    <button class="media-btn" bindtap="onUpload">照片/视频</button>
+    <view class="previews">
+      <image class="preview" wx:for="{{media}}" wx:key="*this" src="{{item}}" mode="aspectFill" />
+    </view>
+    <view class="anon" bindtap="onToggleAnonymous">
+      <text>{{isAnonymous ? '已匿名（点击改为公开）' : '公开（点击改为匿名）'}}</text>
+    </view>
+  </view>
+
+  <view class="save-bar">
+    <button class="btn-primary save-btn" bindtap="onSubmit">提交评价</button>
+  </view>
+</view>

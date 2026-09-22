@@ -1,0 +1,121 @@
+.stats {
+  background-color: var(--color-white);
+  padding: var(--space-xl) 0;
+  display: flex;
+}
+
+.stat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-right: var(--hairline) solid var(--fill-base);
+}
+
+.stat:last-child {
+  border-right: none;
+}
+
+.stat-num {
+  font-family: var(--font-family-number);
+  font-size: var(--font-size-title);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-warning);
+}
+
+.stat-label {
+  margin-top: var(--space-xs);
+  font-size: var(--font-size-tag);
+  color: var(--text-secondary);
+}
+
+.group {
+  padding: var(--space-lg) var(--page-padding-horizontal) 0;
+}
+
+.date-line {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--space-lg);
+}
+
+.line {
+  flex: 1;
+  height: var(--hairline);
+  background-color: var(--fill-base);
+}
+
+.date {
+  margin: 0 var(--space-md);
+  font-size: var(--font-size-tag);
+  color: var(--text-annotation);
+}
+
+.spot {
+  display: flex;
+  margin-bottom: var(--space-xl);
+}
+
+.time-col {
+  width: var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: var(--space-md);
+}
+
+.time {
+  font-size: var(--font-size-tag);
+  color: var(--text-annotation);
+}
+
+.dot {
+  margin-top: var(--space-xs);
+  width: var(--space-sm);
+  height: var(--space-sm);
+  border-radius: var(--radius-full);
+  background-color: var(--color-warning);
+}
+
+.cover {
+  width: var(--thumb-sm);
+  height: var(--thumb-sm);
+  border-radius: var(--radius-medium);
+  background-color: var(--fill-base);
+  flex-shrink: 0;
+}
+
+.spot-info {
+  flex: 1;
+  min-width: 0;
+  margin-left: var(--space-md);
+  display: flex;
+  flex-direction: column;
+}
+
+.spot-title {
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin-top: var(--space-sm);
+}
+
+.tag {
+  padding: 0 var(--space-sm);
+  font-size: var(--font-size-tag);
+  color: var(--color-warning);
+  border: var(--hairline) solid var(--color-warning);
+  border-radius: var(--radius-full);
+}
+
+.addr {
+  margin-top: var(--space-sm);
+  font-size: var(--font-size-tag);
+  color: var(--text-secondary);
+}

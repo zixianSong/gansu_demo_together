@@ -32,6 +32,17 @@ page {
   --fill-body: #F8F8F8;
   --fill-base: #F2F2F2;
 
+  --text-on-primary: #FFFFFF;
+  --text-on-primary-muted: #DBEAFE;
+  --fill-on-primary: rgba(255, 255, 255, 0.2);
+  --fill-on-primary-strong: rgba(255, 255, 255, 0.15);
+  --color-price: #FA5151;
+  --color-privacy: #10B981;
+  --fill-privacy: #ECFDF5;
+  --fill-privacy-icon: #D1FAE5;
+  --fill-media: #F0FDF4;
+  --color-media: #15803D;
+
   /* 遮罩、阴影（弹层/卡片复用） */
   --overlay-mask: rgba(0, 0, 0, 0.85);
   --shadow-card: 0 4rpx 16rpx rgba(0, 0, 0, 0.05);
@@ -63,6 +74,25 @@ page {
   --nav-height: 94rpx;
   --tabbar-height: 100rpx;
   --icon-size-base: 48rpx;
+  --space-xs: 8rpx;
+  --space-sm: 16rpx;
+  --space-md: 24rpx;
+  --space-lg: 32rpx;
+  --space-xl: 48rpx;
+  --avatar-size: 128rpx;
+  --avatar-xl: 192rpx;
+  --thumb-sm: 160rpx;
+  --thumb-md: 192rpx;
+  --icon-sm: 32rpx;
+  --icon-md: 40rpx;
+  --icon-lg: 56rpx;
+  --header-overlap: 32rpx;
+  --qr-size: 384rpx;
+  --hairline: 1rpx;
+  --label-width: 160rpx;
+  --textarea-min: 160rpx;
+  --save-bar-space: 168rpx;
+  --input-height: 72rpx;
 }
 
 /* ========================================
@@ -72,6 +102,7 @@ page {
   --radius-small: 8rpx;
   --radius-medium: 16rpx;
   --radius-large: 32rpx;
+  --radius-full: 999rpx;
 }
 
 /* ========================================

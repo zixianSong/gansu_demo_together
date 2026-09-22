@@ -1,0 +1,117 @@
+.form-page {
+  padding-bottom: var(--save-bar-space);
+}
+
+.venue,
+.rating,
+.editor,
+.media {
+  padding: var(--space-lg);
+}
+
+.venue-title {
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+}
+
+.venue-addr {
+  display: block;
+  margin-top: var(--space-sm);
+  font-size: var(--font-size-caption);
+  color: var(--text-secondary);
+}
+
+.rating {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.rating-q {
+  font-size: var(--font-size-body);
+  color: var(--text-secondary);
+}
+
+.stars {
+  display: flex;
+  gap: var(--space-md);
+  margin: var(--space-md) 0 var(--space-sm);
+}
+
+.star {
+  font-size: var(--font-size-extra-large);
+  color: var(--text-disabled);
+}
+
+.star--on {
+  color: var(--color-primary-yellow);
+}
+
+.rating-label {
+  font-size: var(--font-size-caption);
+  color: var(--color-primary-yellow);
+}
+
+.textarea {
+  width: 100%;
+  min-height: var(--textarea-min);
+  font-size: var(--font-size-body);
+}
+
+.count {
+  display: block;
+  text-align: right;
+  font-size: var(--font-size-tag);
+  color: var(--text-annotation);
+}
+
+.media-btn {
+  margin: 0;
+  width: auto;
+  display: inline-flex;
+  padding: var(--space-md) var(--space-lg);
+  background-color: var(--fill-media);
+  color: var(--color-media);
+  font-size: var(--font-size-caption);
+  border-radius: var(--radius-medium);
+}
+
+.media-btn::after {
+  border: none;
+}
+
+.previews {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+}
+
+.preview {
+  width: var(--thumb-sm);
+  height: var(--thumb-sm);
+  border-radius: var(--radius-small);
+  background-color: var(--fill-base);
+}
+
+.anon {
+  margin-top: var(--space-md);
+  font-size: var(--font-size-caption);
+  color: var(--color-primary-blue);
+}
+
+.save-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--color-white);
+  border-top: var(--hairline) solid var(--fill-base);
+  padding: var(--space-md) var(--page-padding-horizontal);
+}
+
+.save-btn {
+  width: 100%;
+  border-radius: var(--radius-full);
+}

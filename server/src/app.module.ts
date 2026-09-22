@@ -8,6 +8,10 @@ import { ArticlesModule } from './articles/articles.module';
 import { PoisModule } from './pois/pois.module';
 import { RoutesModule } from './routes/routes.module';
 import { SearchModule } from './search/search.module';
+import { AuthModule } from './auth/auth.module';
+import { MeModule } from './me/me.module';
+import { LegalModule } from './legal/legal.module';
+import { MerchantModule } from './merchant/merchant.module';
 
 @Module({
   imports: [
@@ -20,6 +24,10 @@ import { SearchModule } from './search/search.module';
     PoisModule,
     RoutesModule,
     SearchModule,
+    AuthModule,
+    MeModule,
+    LegalModule,
+    MerchantModule,
   ],
 })
 export class AppModule {}

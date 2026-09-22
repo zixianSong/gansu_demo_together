@@ -1,6 +1,6 @@
 {
   "navigationBarTitleText": "我的",
-  "usingComponents": {
-    "c-button": "/components/c-button/c-button"
-  }
+  "navigationBarBackgroundColor": "#1677FF",
+  "navigationBarTextStyle": "white",
+  "backgroundColor": "#F8F8F8"
 }
