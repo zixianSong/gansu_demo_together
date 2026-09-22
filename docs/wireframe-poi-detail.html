@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>POI 详情页线框说明（草案）</title>
+  <style>
+    :root {
+      --ink: #1a1a1a;
+      --muted: #666;
+      --line: #c8c8c8;
+      --fill: #e8e8e8;
+      --fill-2: #f3f3f3;
+      --paper: #fafafa;
+      --phone: #111;
+      --accent: #1677ff;
+      --note: #8a5a00;
+      --note-bg: #fff8e6;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+      color: var(--ink);
+      background: #ececec;
+      line-height: 1.5;
+    }
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 20px 64px;
+    }
+    h1 { font-size: 22px; margin: 0 0 8px; }
+    .meta { color: var(--muted); font-size: 13px; margin-bottom: 24px; }
+    .intro {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px 18px;
+      margin-bottom: 28px;
+      font-size: 14px;
+    }
+    .intro ul { margin: 8px 0 0; padding-left: 18px; }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+    @media (max-width: 860px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+    .col-title {
+      font-size: 15px;
+      font-weight: 600;
+      margin: 0 0 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .tag {
+      font-size: 11px;
+      font-weight: 500;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: var(--fill);
+      color: var(--muted);
+    }
+    .phone-wrap {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .phone {
+      width: 320px;
+      flex-shrink: 0;
+      border: 2px solid var(--phone);
+      border-radius: 28px;
+      background: #fff;
+      overflow: hidden;
+      box-shadow: none;
+    }
+    .status {
+      height: 28px;
+      background: var(--fill-2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: var(--muted);
+      border-bottom: 1px dashed var(--line);
+    }
+    .nav {
+      height: 44px;
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+      border-bottom: 1px solid var(--line);
+      font-size: 14px;
+      font-weight: 600;
+      gap: 8px;
+    }
+    .nav .back {
+      width: 18px;
+      height: 18px;
+      border-left: 2px solid #333;
+      border-bottom: 2px solid #333;
+      transform: rotate(45deg);
+      margin-left: 4px;
+    }
+    .scroll {
+      height: 560px;
+      overflow: auto;
+      background: var(--paper);
+      position: relative;
+    }
+    .hero {
+      height: 180px;
+      background: repeating-linear-gradient(
+        -45deg,
+        var(--fill),
+        var(--fill) 8px,
+        #ddd 8px,
+        #ddd 16px
+      );
+      position: relative;
+      border-bottom: 1px solid var(--line);
+    }
+    .hero .label {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 12px;
+      color: var(--muted);
+      background: rgba(255,255,255,0.85);
+      padding: 4px 10px;
+      border: 1px dashed var(--line);
+    }
+    .dots {
+      position: absolute;
+      bottom: 10px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+    }
+    .dots i {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.25);
+      display: block;
+    }
+    .dots i.on { background: #fff; outline: 1px solid #999; }
+    .badge {
+      position: absolute;
+      left: 12px;
+      bottom: 12px;
+      font-size: 11px;
+      padding: 3px 8px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+    }
+    .panel {
+      margin: -16px 12px 12px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 14px 14px 12px;
+      position: relative;
+      z-index: 1;
+    }
+    .title {
+      font-size: 18px;
+      font-weight: 700;
+      margin: 0 0 6px;
+    }
+    .sub {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .chip {
+      font-size: 11px;
+      padding: 3px 8px;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      color: var(--muted);
+      background: var(--fill-2);
+    }
+    .block {
+      margin: 0 12px 12px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .row {
+      display: flex;
+      gap: 10px;
+      padding: 12px 14px;
+      border-bottom: 1px solid #eee;
+      font-size: 13px;
+      align-items: flex-start;
+    }
+    .row:last-child { border-bottom: none; }
+    .row .icon {
+      width: 18px;
+      height: 18px;
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      flex-shrink: 0;
+      margin-top: 1px;
+      background: var(--fill-2);
+    }
+    .row .k {
+      width: 56px;
+      flex-shrink: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .row .v { flex: 1; }
+    .row .link {
+      color: var(--accent);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+    .section-h {
+      padding: 12px 14px 0;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .intro-text {
+      padding: 8px 14px 14px;
+      font-size: 13px;
+      color: #444;
+      line-height: 1.7;
+    }
+    .more {
+      color: var(--accent);
+      font-size: 12px;
+      margin-left: 4px;
+    }
+    .bottom-bar {
+      position: sticky;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #fff;
+      border-top: 1px solid var(--line);
+      padding: 10px 12px 14px;
+      display: flex;
+      gap: 10px;
+    }
+    .btn {
+      flex: 1;
+      height: 40px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      background: var(--fill-2);
+    }
+    .btn.primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+    .ghost {
+      opacity: 0.45;
+      outline: 1px dashed #999;
+    }
+    .notes {
+      flex: 1;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .notes h3 {
+      margin: 0 0 10px;
+      font-size: 13px;
+      color: var(--ink);
+    }
+    .notes ol { margin: 0; padding-left: 18px; }
+    .notes li { margin-bottom: 10px; }
+    .notes .n {
+      display: inline-block;
+      min-width: 16px;
+      height: 16px;
+      line-height: 16px;
+      text-align: center;
+      border-radius: 50%;
+      background: var(--ink);
+      color: #fff;
+      font-size: 10px;
+      margin-right: 4px;
+    }
+    .callout {
+      margin-top: 12px;
+      padding: 10px 12px;
+      background: var(--note-bg);
+      border: 1px solid #f0d78c;
+      border-radius: 6px;
+      color: var(--note);
+      font-size: 12px;
+    }
+    .legend {
+      margin-top: 28px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px 18px;
+      font-size: 13px;
+    }
+    .legend table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    .legend th, .legend td {
+      border: 1px solid #e5e5e5;
+      padding: 8px 10px;
+      text-align: left;
+      font-size: 12px;
+      vertical-align: top;
+    }
+    .legend th { background: var(--fill-2); }
+    .mark {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      border-radius: 3px;
+      vertical-align: -2px;
+      margin-right: 4px;
+    }
+    .mark.must { background: #fff; border: 2px solid #333; }
+    .mark.opt { background: #fff; border: 2px dashed #999; }
+    .mark.hide { background: var(--fill); border: 1px solid var(--line); }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <h1>景点 / 地点详情页 · 线框说明（草案）</h1>
+    <p class="meta">
+      依据现有 <code>poi</code> 表字段 · 同一模板按 <code>category</code> 显隐 · 仅布局示意，非最终视觉稿
+    </p>
+
+    <div class="intro">
+      <strong>怎么看这张线框</strong>
+      <ul>
+        <li><strong>实线块</strong>：建议本期就做、有数据就展示。</li>
+        <li><strong>虚线 / 半透明</strong>：结构预留，无数据则整块隐藏（如底栏预订）。</li>
+        <li>左：景区 / 文博示例；右：美食示例（字段差异）。</li>
+      </ul>
+    </div>
+
+    <div class="grid">
+      <!-- 景区 -->
+      <div>
+        <div class="col-title">A. 景区 / 文博 <span class="tag">category = scenic / museum</span></div>
+        <div class="phone-wrap">
+          <div class="phone">
+            <div class="status">状态栏</div>
+            <div class="nav"><span class="back"></span> 地点详情</div>
+            <div class="scroll">
+              <!-- 1 头图 -->
+              <div class="hero">
+                <div class="label">① 头图 / 多图轮播<br/>images_json 或 cover_url</div>
+                <span class="badge">景点 · 5A</span>
+                <div class="dots"><i class="on"></i><i></i><i></i></div>
+              </div>
+
+              <!-- 2 标题卡 -->
+              <div class="panel">
+                <p class="title">② 敦煌莫高窟</p>
+                <p class="sub">敦煌市 · 景点 · 建议 2–3 小时</p>
+                <div class="chips">
+                  <span class="chip">③ 世界遗产</span>
+                  <span class="chip">石窟艺术</span>
+                  <span class="chip">tags_json</span>
+                </div>
+              </div>
+
+              <!-- 3 关键信息 -->
+              <div class="block">
+                <div class="row">
+                  <span class="icon"></span>
+                  <span class="k">地址</span>
+                  <span class="v">甘肃省敦煌市莫高窟</span>
+                  <span class="link">地图</span>
+                </div>
+                <div class="row">
+                  <span class="icon"></span>
+                  <span class="k">开放</span>
+                  <span class="v">08:00–17:30（季节可能调整）</span>
+                </div>
+                <div class="row">
+                  <span class="icon"></span>
+                  <span class="k">门票</span>
+                  <span class="v">¥238 起 · 需预约</span>
+                </div>
+                <div class="row">
+                  <span class="icon"></span>
+                  <span class="k">时长</span>
+                  <span class="v">建议游玩 2–3 小时</span>
+                </div>
+              </div>
+
+              <!-- 4 简介 -->
+              <div class="block">
+                <div class="section-h">⑤ 简介</div>
+                <div class="intro-text">
+                  世界文化遗产，壁画与彩塑艺术殿堂。建议提前预约门票，合理安排观窟时段……
+                  <span class="more">展开</span>
+                </div>
+              </div>
+
+              <div style="height: 56px;"></div>
+              <div class="bottom-bar ghost">
+                <div class="btn primary">⑥ 去预订（有 booking_* 才显示）</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="notes">
+            <h3>区块说明</h3>
+            <ol>
+              <li><span class="n">1</span>全宽头图；多图用圆点指示。无图用占位。</li>
+              <li><span class="n">2</span>标题上浮叠在头图底部；副标题：城市 · 类型 ·（可选时长）。</li>
+              <li><span class="n">3</span>标签整行无数据则隐藏。</li>
+              <li><span class="n">4</span>关键信息条：有值才渲染；地址可带「打开地图」（需 lat/lng）。</li>
+              <li><span class="n">5</span>简介独立区块；过长折叠。</li>
+              <li><span class="n">6</span>底栏仅预订外链；无 booking 则整栏不出现。</li>
+            </ol>
+            <div class="callout">
+              景区特有展示：<code>grade</code>、<code>price</code> + <code>price_note</code>、<code>suggest_duration</code>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 美食 -->
+      <div>
+        <div class="col-title">B. 美食 <span class="tag">category = food</span></div>
+        <div class="phone-wrap">
+          <div class="phone">
+            <div class="status">状态栏</div>
+            <div class="nav"><span class="back"></span> 地点详情</div>
+            <div class="scroll">
+              <div class="hero">
+                <div class="label">① 头图 / 多图<br/>同模板</div>
+                <span class="badge">美食</span>
+                <div class="dots"><i class="on"></i><i></i></div>
+              </div>
+
+              <div class="panel">
+                <p class="title">② 兰州牛肉面（某某店）</p>
+                <p class="sub">兰州市 · 美食 · 评分 4.6</p>
+                <div class="chips">
+                  <span class="chip">③ 面食</span>
+                  <span class="chip">本地特色</span>
+                </div>
+              </div>
+
+              <div class="block">
+                <div class="row">
+                  <span class="icon"></span>
+                  <span class="k">地址</span>
+                  <span class="v">城关区某某路 12 号</span>
+                  <span class="link">地图</span>
+                </div>
+                <div class="row">
+                  <span class="icon"></span>
+                  <span class="k">人均</span>
+                  <span class="v">¥25–40</span>
+                </div>
+                <div class="row">
+                  <span class="icon"></span>
+                  <span class="k">菜系</span>
+                  <span class="v">面食 / 清真</span>
+                </div>
+                <div class="row">
+                  <span class="icon"></span>
+                  <span class="k">开放</span>
+                  <span class="v">10:00–21:00</span>
+                </div>
+              </div>
+
+              <div class="block">
+                <div class="section-h">⑤ 简介</div>
+                <div class="intro-text">
+                  一清二白三红四绿五黄的经典味道……
+                </div>
+              </div>
+
+              <div style="height: 24px;"></div>
+              <!-- 无预订：不渲染底栏 -->
+            </div>
+          </div>
+
+          <div class="notes">
+            <h3>与景区的差异</h3>
+            <ol>
+              <li>角标改为「美食」，一般不展示 5A。</li>
+              <li>副标题可带 <code>rating</code>。</li>
+              <li>信息条用 <code>avg_cost</code>、<code>cuisine_type</code> 替代门票/等级。</li>
+              <li>无预订字段时，底栏完全不出现（本示例）。</li>
+            </ol>
+            <div class="callout">
+              美食特有：<code>rating</code>、<code>avg_cost</code>、<code>cuisine_type</code>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="legend">
+      <strong>字段 × 区块对照（来自 poi 表）</strong>
+      <table>
+        <thead>
+          <tr>
+            <th>区块</th>
+            <th>字段</th>
+            <th>空值策略</th>
+            <th>本期建议</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>① 头图</td>
+            <td>images_json / cover_url</td>
+            <td>占位图</td>
+            <td><span class="mark must"></span>必做</td>
+          </tr>
+          <tr>
+            <td>② 标题卡</td>
+            <td>name, category, city, grade?, rating?, suggest_duration?</td>
+            <td>次要项缺则省略</td>
+            <td><span class="mark must"></span>必做</td>
+          </tr>
+          <tr>
+            <td>③ 标签</td>
+            <td>tags_json</td>
+            <td>整行隐藏</td>
+            <td><span class="mark must"></span>建议做</td>
+          </tr>
+          <tr>
+            <td>④ 关键信息</td>
+            <td>address, open_time, price/price_note 或 avg_cost, cuisine_type, lat/lng</td>
+            <td>按行隐藏</td>
+            <td><span class="mark must"></span>建议做</td>
+          </tr>
+          <tr>
+            <td>⑤ 简介</td>
+            <td>intro</td>
+            <td>整块隐藏</td>
+            <td><span class="mark must"></span>必做（MVP 已有）</td>
+          </tr>
+          <tr>
+            <td>⑥ 底栏预订</td>
+            <td>booking_url / booking_appid+path</td>
+            <td>整栏隐藏</td>
+            <td><span class="mark opt"></span>可选（外链，非站内下单）</td>
+          </tr>
+          <tr>
+            <td>同目的地推荐等</td>
+            <td>destination_id 关联</td>
+            <td>—</td>
+            <td><span class="mark hide"></span>二期，本线框不画</td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="margin: 12px 0 0; color: var(--muted); font-size: 12px;">
+        文件位置：<code>docs/wireframe-poi-detail.html</code> · 用浏览器打开即可预览 · 确认后可据此画 MasterGo 或直接改前端
+      </p>
+    </div>
+  </div>
+</body>
+</html>

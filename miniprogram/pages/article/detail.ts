@@ -160,7 +160,7 @@ Page({
 
       })
 
-      wx.setNavigationBarTitle({ title: article.title || '文章详情' })
+      wx.setNavigationBarTitle({ title: '文章详情' })
 
       if (article.hasRelatedPois) {
 

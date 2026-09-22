@@ -20,7 +20,7 @@
 
         >
 
-          <image class="mention-icon" src="/static/images/icon/location-pin.svg" mode="aspectFit" />
+          <image class="mention-icon mention-icon-pin" src="/static/images/icon/location-pin.svg" mode="aspectFit" />
 
           <text class="mention-text">提及地点</text>
 
@@ -28,13 +28,15 @@
 
         <view
 
-          class="mention-chip mention-chip-route"
+          class="mention-chip"
 
           wx:if="{{article.hasRelatedRoutes}}"
 
           bindtap="onOpenRouteSheet"
 
         >
+
+          <image class="mention-icon mention-icon-route" src="/static/images/icon/route-line.png" mode="aspectFit" />
 
           <text class="mention-text">提及线路</text>
 

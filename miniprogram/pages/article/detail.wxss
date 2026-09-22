@@ -78,16 +78,6 @@
 
 
 
-.mention-chip-route {
-
-  background-color: var(--color-white);
-
-  border: 1rpx solid var(--fill-base);
-
-}
-
-
-
 .mention-icon {
 
   width: 22rpx;
@@ -100,19 +90,30 @@
 
 
 
-.mention-text {
+/* 设计稿水滴尖朝下；当前 SVG 尖朝上，垂直翻转纠正 */
+.mention-icon-pin {
 
-  font-size: var(--font-size-caption);
-
-  color: var(--color-warning);
+  transform: scaleY(-1);
 
 }
 
 
 
-.mention-chip-route .mention-text {
+.mention-icon-route {
 
-  color: var(--text-secondary);
+  width: 28rpx;
+
+  height: 28rpx;
+
+}
+
+
+
+.mention-text {
+
+  font-size: var(--font-size-caption);
+
+  color: var(--color-warning);
 
 }
 
@@ -330,6 +331,12 @@
 
   padding: 8rpx 0;
 
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
 }
 
 
@@ -339,6 +346,8 @@
   font-size: var(--font-size-body);
 
   color: var(--text-annotation);
+
+  text-align: center;
 
 }
 
