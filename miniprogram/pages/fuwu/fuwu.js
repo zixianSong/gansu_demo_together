@@ -12,7 +12,12 @@ Page({
     ],
   },
 
-  onServiceTap() {
+  onServiceTap(e) {
+    const name = e.currentTarget.dataset.name
+    if (name === '线路') {
+      wx.switchTab({ url: '/pages/charter/charter' })
+      return
+    }
     wx.showToast({ title: '功能开发中', icon: 'none' })
   },
 })

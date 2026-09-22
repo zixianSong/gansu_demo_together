@@ -8,6 +8,7 @@ import { ArticlesModule } from './articles/articles.module';
 import { PoisModule } from './pois/pois.module';
 import { RoutesModule } from './routes/routes.module';
 import { SearchModule } from './search/search.module';
+import { CharterModule } from './charter/charter.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { SearchModule } from './search/search.module';
     PoisModule,
     RoutesModule,
     SearchModule,
+    CharterModule,
   ],
 })
 export class AppModule {}
