@@ -14,11 +14,12 @@ function splitFeed(list: FeedItem[]) {
 Page({
   data: {
     banners: [] as BannerItem[],
+    // 分类入口写死前端（P2 占位）；图标来自 MasterGo 22:03707 / 分类区
     categories: [
-      { name: '景区', icon: '/static/images/icon/image.svg' },
-      { name: '文博场馆', icon: '/static/images/icon/image.svg' },
-      { name: '美食', icon: '/static/images/icon/image.svg' },
-      { name: '线路', icon: '/static/images/icon/image.svg' },
+      { name: '景区', icon: '/static/images/category/scenic.png' },
+      { name: '文博场馆', icon: '/static/images/category/museum.png' },
+      { name: '美食', icon: '/static/images/category/food.png' },
+      { name: '线路', icon: '/static/images/category/route.png' },
     ],
     // 设计稿占位行程（P2，真实数据未接入）
     trips: [

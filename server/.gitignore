@@ -15,3 +15,7 @@
 
 # prisma
 /prisma/*.db
+
+# article image uploads (rehosted WeChat assets)
+/uploads/**
+!/uploads/.gitkeep
