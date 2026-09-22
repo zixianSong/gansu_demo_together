@@ -1,5 +1,9 @@
 export const formatPrice = (price: number): string => `¥${price}`
 
+export const toast = (title: string) => {
+  wx.showToast({ title, icon: 'none' })
+}
+
 export const debounce = <T extends (...args: unknown[]) => void>(
   fn: T,
   delay = 300

@@ -1,21 +1,51 @@
-<view class="page page-container">
-  <view class="profile-card">
-    <image class="avatar" src="{{userInfo.avatarUrl}}" mode="aspectFill" />
-    <view class="profile-info">
-      <text class="nickname">{{userInfo.nickName || '游客'}}</text>
-      <text class="desc">探索甘肃，发现美好旅途</text>
+<view class="page-container mine-page">
+  <view class="user-header">
+    <view class="user-row">
+      <view class="avatar-wrap" bindtap="onLogin">
+        <image wx:if="{{loggedIn}}" class="avatar" src="{{userInfo.avatarUrl}}" mode="aspectFill" />
+        <text wx:else class="avatar-placeholder">我</text>
+      </view>
+      <view class="user-meta" bindtap="onLogin">
+        <text class="user-name">{{loggedIn ? userInfo.nickName : '点击登录 / 注册'}}</text>
+        <text class="user-hint">{{loggedIn ? (userInfo.bio || '探索甘肃，发现美好旅途') : '登录后享受更多出行服务'}}</text>
+      </view>
+      <view class="profile-link" bindtap="onOpenProfile">
+        <text>个人主页</text>
+        <text class="arrow">›</text>
+      </view>
     </view>
-    <c-button type="secondary" text="编辑资料" bind:tap="onEditProfile" />
+    <view class="user-extra">
+      <text>账号：<text class="extra-strong">{{loggedIn ? userInfo.account : '未登录'}}</text></text>
+      <text>会员等级：<text class="extra-strong">{{loggedIn ? userInfo.memberLevel : '--'}}</text></text>
+    </view>
+  </view>
+
+  <view class="order-card card">
+    <view class="order-head">
+      <text class="order-title">我的订单</text>
+      <view class="order-all" data-tab="all" bindtap="onOpenOrders">
+        <text>全部订单</text>
+        <text class="arrow muted">›</text>
+      </view>
+    </view>
+    <view class="order-grid">
+      <view class="order-item" wx:for="{{orderEntries}}" wx:key="tab" data-tab="{{item.tab}}" bindtap="onOpenOrders">
+        <text class="order-icon">{{item.icon}}</text>
+        <text class="order-label">{{item.label}}</text>
+      </view>
+    </view>
   </view>
 
   <view class="menu-card">
-    <view class="menu-item" wx:for="{{menuList}}" wx:key="title" data-title="{{item.title}}" bindtap="onMenuTap">
+    <view
+      class="menu-item {{index === menuList.length - 1 ? 'menu-item--last' : ''}}"
+      wx:for="{{menuList}}"
+      wx:key="key"
+      data-key="{{item.key}}"
+      bindtap="onMenuTap"
+    >
       <text class="menu-title">{{item.title}}</text>
-      <text class="menu-arrow">></text>
+      <text class="arrow muted">›</text>
     </view>
-  </view>
-
-  <view class="action-wrap">
-    <c-button type="primary" text="联系客服" block bind:tap="onContact" />
   </view>
 </view>

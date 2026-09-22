@@ -38,6 +38,12 @@ export class AllExceptionsFilter implements ExceptionFilter {
         code = 404;
       } else if (status === HttpStatus.BAD_REQUEST) {
         code = 40001;
+      } else if (status === HttpStatus.UNAUTHORIZED) {
+        code = 401;
+      } else if (status === HttpStatus.FORBIDDEN) {
+        code = 403;
+      } else if (status === HttpStatus.CONFLICT) {
+        code = 409;
       } else if (status >= 500) {
         code = 50000;
       } else {

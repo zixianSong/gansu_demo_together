@@ -16,7 +16,19 @@
     "pages/itinerary/summary-reviewing/index",
     "pages/itinerary/summary-report/index",
     "pages/fuwu/fuwu",
-    "pages/wode/wode"
+    "pages/wode/wode",
+    "pages/profile/profile",
+    "pages/orders/orders",
+    "pages/order-detail/order-detail",
+    "pages/footprint/footprint",
+    "pages/reviews/reviews",
+    "pages/review-form/review-form",
+    "pages/favorites/favorites",
+    "pages/travelers/travelers",
+    "pages/traveler-form/traveler-form",
+    "pages/feedback/feedback",
+    "pages/privacy/privacy",
+    "pages/mine-doc/mine-doc"
   ],
   "window": {
     "navigationBarTextStyle": "black",

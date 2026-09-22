@@ -12,6 +12,10 @@ import { MineModule } from './mine/mine.module';
 import { ItineraryModule } from './itinerary/itinerary.module';
 import { CharterModule } from './charter/charter.module';
 import { AdminModule } from './admin/admin.module';
+import { AuthModule } from './auth/auth.module';
+import { MeModule } from './me/me.module';
+import { LegalModule } from './legal/legal.module';
+import { MerchantModule } from './merchant/merchant.module';
 
 @Module({
   imports: [
@@ -28,6 +32,10 @@ import { AdminModule } from './admin/admin.module';
     ItineraryModule,
     CharterModule,
     AdminModule,
+    AuthModule,
+    MeModule,
+    LegalModule,
+    MerchantModule,
   ],
 })
 export class AppModule {}

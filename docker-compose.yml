@@ -1,6 +1,6 @@
 services:
   mysql:
-    image: mysql:8.4
+    image: docker.m.daocloud.io/library/mysql:8.4
     container_name: travel-mysql
     restart: unless-stopped
     environment:
@@ -12,6 +12,12 @@ services:
       - "3308:3306"
     volumes:
       - travel_mysql_data:/var/lib/mysql
+      - ./server/docker/mysql-init.sql:/docker-entrypoint-initdb.d/01-shadow.sql:ro
+      - ./server/prisma/ensure-users.sql:/docker-entrypoint-initdb.d/02-users.sql:ro
+      - ./server/prisma/ensure-orders.sql:/docker-entrypoint-initdb.d/03-orders.sql:ro
+      - ./server/prisma/seed-orders.sql:/docker-entrypoint-initdb.d/04-seed-orders.sql:ro
+      - ./server/prisma/ensure-reviews.sql:/docker-entrypoint-initdb.d/05-reviews.sql:ro
+      - ./server/prisma/seed-reviews.sql:/docker-entrypoint-initdb.d/06-seed-reviews.sql:ro
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-uroot", "-proot123"]
@@ -20,7 +26,7 @@ services:
       retries: 30
 
   redis:
-    image: redis:7.2.15-alpine
+    image: docker.m.daocloud.io/library/redis:7.2-alpine
     container_name: travel-redis
     restart: unless-stopped
     ports:
@@ -28,6 +34,32 @@ services:
     volumes:
       - travel_redis_data:/data
     command: redis-server --appendonly yes
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  api:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: travel-api
+    restart: unless-stopped
+    env_file:
+      - ./server/.env
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: mysql://travel:travelpass@mysql:3306/gansu_travel3
+      SHADOW_DATABASE_URL: mysql://travel:travelpass@mysql:3306/prisma_shadow
+      REDIS_URL: redis://redis:6379
+      PORT: "3000"
+    ports:
+      - "3000:3000"
 
 volumes:
   travel_mysql_data:
