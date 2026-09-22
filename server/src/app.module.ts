@@ -10,6 +10,7 @@ import { RoutesModule } from './routes/routes.module';
 import { SearchModule } from './search/search.module';
 import { MineModule } from './mine/mine.module';
 import { ItineraryModule } from './itinerary/itinerary.module';
+import { CharterModule } from './charter/charter.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { ItineraryModule } from './itinerary/itinerary.module';
     RoutesModule,
     SearchModule,
     ItineraryModule,
+    CharterModule,
   ],
 })
 export class AppModule {}

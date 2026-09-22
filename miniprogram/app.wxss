@@ -25,6 +25,7 @@ page {
   --color-info: #D1E5FF;
 
   --text-primary: #000000;
+  --text-ink: #1D1D1F;
   --text-secondary: #515151;
   --text-annotation: #A6A6A6;
   --text-disabled: #D8D8D8;

@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/charter/charter",
     "pages/index/index",
     "pages/article/detail",
     "pages/poi/detail",
@@ -30,7 +31,7 @@
     "borderStyle": "black",
     "list": [
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/charter/charter",
         "text": "首页",
         "iconPath": "static/images/icon/tab-home.png",
         "selectedIconPath": "static/images/icon/tab-home-active.png"

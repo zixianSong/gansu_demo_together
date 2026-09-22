@@ -282,3 +282,36 @@ model HomeHotRoute {
   @@unique([routeId])
   @@map("home_hot_route")
 }
+
+/// 包车旅游线路（gansu_travel3.biz_tour_route）
+model BizTourRoute {
+  id                 BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  routeName          String    @map("route_name") @db.VarChar(100)
+  startCity          String    @map("start_city") @db.VarChar(50)
+  endCity            String    @map("end_city") @db.VarChar(50)
+  estimatedDuration  String?   @map("estimated_duration") @db.VarChar(50)
+  referencePrice     Decimal?  @map("reference_price") @db.Decimal(10, 2)
+  routeDesc          String?   @map("route_desc") @db.Text
+  coverImg           String?   @map("cover_img") @db.VarChar(255)
+  status             Int       @default(1) @db.UnsignedTinyInt
+  createdAt          DateTime  @default(now()) @map("created_at")
+  updatedAt          DateTime  @updatedAt @map("updated_at")
+  deletedAt          DateTime? @map("deleted_at")
+
+  @@map("biz_tour_route")
+}
+
+/// 车型配置（与线路无外键）
+model SysCarModel {
+  id          BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  modelName   String    @map("model_name") @db.VarChar(50)
+  vehicleType String?   @map("vehicle_type") @db.VarChar(20)
+  seatCount   Int       @map("seat_count")
+  sortOrder   Int       @default(0) @map("sort_order")
+  status      Int       @default(1) @db.UnsignedTinyInt
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @updatedAt @map("updated_at")
+  deletedAt   DateTime? @map("deleted_at")
+
+  @@map("sys_car_model")
+}
