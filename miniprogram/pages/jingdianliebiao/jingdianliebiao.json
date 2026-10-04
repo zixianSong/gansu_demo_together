@@ -1,8 +1,0 @@
-{
-  "navigationBarTitleText": "景点列表",
-  "usingComponents": {
-    "c-input": "/components/c-input/c-input",
-    "c-tab": "/components/c-tab/c-tab",
-    "c-button": "/components/c-button/c-button"
-  }
-}

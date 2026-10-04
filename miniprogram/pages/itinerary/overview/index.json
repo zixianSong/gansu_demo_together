@@ -1,9 +1,0 @@
-{
-  "navigationStyle": "custom",
-  "navigationBarTextStyle": "black",
-  "navigationBarBackgroundColor": "#FFFFFF",
-  "backgroundColor": "#FAFAFA",
-  "usingComponents": {
-    "itinerary-chrome": "/components/itinerary-chrome/itinerary-chrome"
-  }
-}
