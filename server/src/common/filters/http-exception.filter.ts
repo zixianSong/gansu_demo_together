@@ -14,41 +14,24 @@ export class AllExceptionsFilter implements ExceptionFilter {
     const response = ctx.getResponse<Response>();
 
     let status = HttpStatus.INTERNAL_SERVER_ERROR;
-    let code = 50000;
+    let code = 500;
     let message = '服务器错误';
 
     if (exception instanceof HttpException) {
       status = exception.getStatus();
       const body = exception.getResponse();
-      let bizCode: number | undefined;
       if (typeof body === 'string') {
         message = body;
       } else if (body && typeof body === 'object') {
         const obj = body as Record<string, unknown>;
-        if (typeof obj.code === 'number') bizCode = obj.code;
+        message = String(obj.message ?? obj.error ?? message);
         if (Array.isArray(obj.message)) {
           message = obj.message.join('; ');
-        } else {
-          message = String(obj.message ?? obj.error ?? message);
         }
       }
-      if (bizCode != null) {
-        code = bizCode;
-      } else if (status === HttpStatus.NOT_FOUND) {
-        code = 404;
-      } else if (status === HttpStatus.BAD_REQUEST) {
-        code = 40001;
-      } else if (status === HttpStatus.UNAUTHORIZED) {
-        code = 401;
-      } else if (status === HttpStatus.FORBIDDEN) {
-        code = 403;
-      } else if (status === HttpStatus.CONFLICT) {
-        code = 409;
-      } else if (status >= 500) {
-        code = 50000;
-      } else {
-        code = status;
-      }
+      code = status;
+      if (status === HttpStatus.NOT_FOUND) code = 404;
+      if (status === HttpStatus.BAD_REQUEST) code = 400;
     } else if (exception instanceof Error) {
       console.error(exception);
       message = exception.message || message;

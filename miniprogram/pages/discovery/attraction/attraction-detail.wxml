@@ -1,0 +1,36 @@
+<view class="page" wx:if="{{!loading}}">
+  <scroll-view class="scroll" scroll-y enhanced show-scrollbar="{{false}}">
+    <image
+      class="cover"
+      src="{{poi.coverUrl || '/static/images/icon/image.svg'}}"
+      mode="aspectFill"
+    />
+
+    <view class="card">
+      <view class="title-row">
+        <text class="title">{{poi.name}}</text>
+        <text class="badge">{{categoryLabel}}</text>
+      </view>
+
+      <view class="info-row" wx:if="{{poi.city}}">
+        <text class="info-label">城市</text>
+        <text class="info-value">{{poi.city}}</text>
+      </view>
+      <view class="info-row" wx:if="{{poi.address}}">
+        <text class="info-label">地址</text>
+        <text class="info-value">{{poi.address}}</text>
+      </view>
+    </view>
+
+    <view class="card" wx:if="{{poi.intro}}">
+      <text class="section-title">简介</text>
+      <text class="intro">{{poi.intro}}</text>
+    </view>
+
+    <view class="safe-bottom"></view>
+  </scroll-view>
+</view>
+
+<view class="loading" wx:else>
+  <text class="loading-text">加载中...</text>
+</view>

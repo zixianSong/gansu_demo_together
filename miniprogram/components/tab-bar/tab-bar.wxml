@@ -1,0 +1,18 @@
+<view class="tab-bar">
+  <view class="tab-item tab-item--active" data-key="home" bindtap="onTap">
+    <image class="tab-icon" src="/static/images/icon/tab-home-active.svg" mode="aspectFit" />
+    <text class="tab-text tab-text--active">首页</text>
+  </view>
+  <view class="tab-item" data-key="trip" bindtap="onTap">
+    <image class="tab-icon" src="/static/images/icon/tab-trip.svg" mode="aspectFit" />
+    <text class="tab-text">行程管理</text>
+  </view>
+  <view class="tab-item" data-key="service" bindtap="onTap">
+    <image class="tab-icon" src="/static/images/icon/tab-scenic.svg" mode="aspectFit" />
+    <text class="tab-text">服务</text>
+  </view>
+  <view class="tab-item" data-key="mine" bindtap="onTap">
+    <image class="tab-icon" src="/static/images/icon/tab-mine.svg" mode="aspectFit" />
+    <text class="tab-text">我的</text>
+  </view>
+</view>

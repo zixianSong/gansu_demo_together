@@ -38,10 +38,5 @@ npm run start:dev
 - `GET /api/v1/health`
 - `GET /api/v1/home/feed`
 - `GET /api/v1/articles/1`
-- `GET /api/v1/itinerary/current`（请求头 `X-User-Id`）
-
-行程管理为独立 Module：`src/itinerary`；用户 ID 占位在 `src/mine`（可替换）。HTTP 说明见仓库外工作区 `docs/api/itinerary-http.md`。
-
-若数据库已是完整 `gansu_travel3.sql`，不要执行 itinerary 那次 migrate（表已存在），只 `npx prisma generate`。
 
 小程序联调请将 `miniprogram/api/base.ts` 的 `BASE_URL` 改为 `http://本机IP:3000/api/v1`，并在开发者工具中勾选不校验合法域名。

@@ -1,0 +1,632 @@
+/* 文章详情 + 提及地点弹层 — 遵循 docs/miniprogram-design-system.md */
+
+.page {
+
+  height: 100vh;
+
+  display: flex;
+
+  flex-direction: column;
+
+  background-color: var(--fill-body);
+
+}
+
+
+
+.scroll {
+
+  flex: 1;
+
+  height: 0;
+
+}
+
+
+
+.article-head {
+
+  padding: var(--page-padding-horizontal) var(--page-padding-horizontal) 0;
+
+}
+
+
+
+.title {
+
+  display: block;
+
+  font-size: var(--font-size-title);
+
+  font-weight: var(--font-weight-bold);
+
+  color: var(--text-primary);
+
+}
+
+
+
+.head-actions {
+
+  margin-top: 24rpx;
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 16rpx;
+
+}
+
+
+
+.mention-chip {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 8rpx;
+
+  padding: 12rpx 24rpx;
+
+  border-radius: var(--radius-large);
+
+  background-color: var(--color-info);
+
+}
+
+
+
+.mention-icon {
+
+  width: 22rpx;
+
+  height: 28rpx;
+
+  flex-shrink: 0;
+
+}
+
+
+
+/* 设计稿水滴尖朝下；当前 SVG 尖朝上，垂直翻转纠正 */
+.mention-icon-pin {
+
+  transform: scaleY(-1);
+
+}
+
+
+
+.mention-icon-route {
+
+  width: 28rpx;
+
+  height: 28rpx;
+
+}
+
+
+
+.mention-text {
+
+  font-size: var(--font-size-caption);
+
+  color: var(--color-warning);
+
+}
+
+
+
+.meta {
+
+  margin-top: 20rpx;
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  align-items: center;
+
+  gap: 8rpx;
+
+}
+
+
+
+.meta-author,
+
+.meta-time,
+
+.meta-dot {
+
+  font-size: var(--font-size-secondary);
+
+  color: var(--text-annotation);
+
+}
+
+
+
+.meta-type {
+
+  margin-left: 8rpx;
+
+  padding: 4rpx 12rpx;
+
+  border-radius: var(--radius-small);
+
+  background-color: var(--color-info);
+
+  color: var(--color-warning);
+
+  font-size: var(--font-size-tag);
+
+}
+
+
+
+.tags {
+
+  margin-top: 16rpx;
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 12rpx;
+
+}
+
+
+
+.tag {
+
+  padding: 6rpx 16rpx;
+
+  border-radius: var(--radius-small);
+
+  background-color: var(--fill-base);
+
+  color: var(--text-secondary);
+
+  font-size: var(--font-size-tag);
+
+}
+
+
+
+.content-card {
+
+  margin: 24rpx var(--page-padding-horizontal) 0;
+
+  padding: var(--page-padding-horizontal);
+
+  border-radius: var(--radius-medium);
+
+  background-color: var(--color-white);
+
+  box-shadow: var(--shadow-card);
+
+}
+
+
+
+.content {
+
+  font-size: var(--font-size-body-large);
+
+  color: var(--text-secondary);
+
+}
+
+
+
+.related-block {
+
+  margin: var(--page-padding-horizontal) var(--page-padding-horizontal) 0;
+
+}
+
+
+
+.preview-card {
+
+  display: flex;
+
+  gap: 24rpx;
+
+  width: 100%;
+
+  height: 200rpx;
+
+  padding: 20rpx;
+
+  box-sizing: border-box;
+
+  border-radius: var(--radius-medium);
+
+  background-color: var(--color-white);
+
+  box-shadow: var(--shadow-card);
+
+}
+
+
+
+.preview-cover {
+
+  width: 186rpx;
+
+  height: 160rpx;
+
+  border-radius: var(--radius-medium);
+
+  background-color: var(--text-disabled);
+
+  flex-shrink: 0;
+
+}
+
+
+
+.preview-body {
+
+  flex: 1;
+
+  min-width: 0;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  gap: 8rpx;
+
+}
+
+
+
+.preview-name {
+
+  font-size: var(--font-size-body);
+
+  font-weight: var(--font-weight-bold);
+
+  color: var(--text-secondary);
+
+}
+
+
+
+.preview-desc {
+
+  font-size: var(--font-size-body);
+
+  font-weight: var(--font-weight-regular);
+
+  color: var(--text-secondary);
+
+}
+
+
+
+.preview-tags {
+
+  font-size: var(--font-size-body);
+
+  font-weight: var(--font-weight-regular);
+
+  color: var(--text-secondary);
+
+}
+
+
+
+.view-all {
+
+  margin-top: 24rpx;
+
+  padding: 8rpx 0;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+}
+
+
+
+.view-all-text {
+
+  font-size: var(--font-size-body);
+
+  color: var(--text-annotation);
+
+  text-align: center;
+
+}
+
+
+
+.safe-bottom {
+
+  height: calc(48rpx + env(safe-area-inset-bottom));
+
+}
+
+
+
+.sheet-mask {
+
+  position: fixed;
+
+  inset: 0;
+
+  background-color: var(--overlay-mask);
+
+  z-index: 20;
+
+}
+
+
+
+.sheet {
+
+  position: fixed;
+
+  left: 0;
+
+  right: 0;
+
+  bottom: 0;
+
+  height: 65vh;
+
+  background-color: var(--color-white);
+
+  border-radius: var(--radius-large) var(--radius-large) 0 0;
+
+  z-index: 21;
+
+  transform: translateY(110%);
+
+  transition: transform 0.25s ease;
+
+  display: flex;
+
+  flex-direction: column;
+
+}
+
+
+
+.sheet-show {
+
+  transform: translateY(0);
+
+}
+
+
+
+.sheet-head {
+
+  position: relative;
+
+  padding: 48rpx var(--page-padding-horizontal) 24rpx;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  flex-shrink: 0;
+
+}
+
+
+
+.sheet-title {
+
+  font-size: var(--font-size-heading);
+
+  font-weight: var(--font-weight-bold);
+
+  color: var(--text-secondary);
+
+}
+
+
+
+.sheet-close-btn {
+
+  position: absolute;
+
+  right: var(--page-padding-horizontal);
+
+  top: 44rpx;
+
+  width: var(--icon-size-base);
+
+  height: var(--icon-size-base);
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+}
+
+
+
+.sheet-close-icon {
+
+  width: 26rpx;
+
+  height: 26rpx;
+
+}
+
+
+
+.sheet-scroll {
+
+  flex: 1;
+
+  height: 0;
+
+  padding: 0 38rpx;
+
+  box-sizing: border-box;
+
+}
+
+
+
+.poi-card {
+
+  display: flex;
+
+  gap: 24rpx;
+
+  width: 100%;
+
+  height: 200rpx;
+
+  margin-bottom: var(--page-padding-horizontal);
+
+  padding: 20rpx;
+
+  box-sizing: border-box;
+
+  border-radius: var(--radius-medium);
+
+  background-color: var(--color-white);
+
+  box-shadow: var(--shadow-card);
+
+}
+
+
+
+.poi-cover {
+
+  width: 186rpx;
+
+  height: 160rpx;
+
+  border-radius: var(--radius-medium);
+
+  background-color: var(--text-disabled);
+
+  flex-shrink: 0;
+
+}
+
+
+
+.poi-body {
+
+  flex: 1;
+
+  min-width: 0;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  gap: 8rpx;
+
+}
+
+
+
+.poi-name {
+
+  font-size: var(--font-size-body);
+
+  font-weight: var(--font-weight-bold);
+
+  color: var(--text-secondary);
+
+}
+
+
+
+.poi-desc {
+
+  font-size: var(--font-size-body);
+
+  font-weight: var(--font-weight-regular);
+
+  color: var(--text-secondary);
+
+}
+
+
+
+.poi-tags {
+
+  font-size: var(--font-size-body);
+
+  font-weight: var(--font-weight-regular);
+
+  color: var(--text-secondary);
+
+}
+
+
+
+.sheet-safe {
+
+  height: calc(24rpx + env(safe-area-inset-bottom));
+
+}
+
+
+
+.empty {
+
+  padding: 80rpx 0;
+
+  text-align: center;
+
+}
+
+
+
+.empty-text,
+
+.loading-text {
+
+  color: var(--text-annotation);
+
+  font-size: var(--font-size-body);
+
+}
+
+
+
+.loading {
+
+  height: 100vh;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background-color: var(--fill-body);
+
+}
+
+

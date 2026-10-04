@@ -17,7 +17,7 @@
     "enhance": false,
     "showShadowRootInWxmlPanel": false,
     "packNpmRelationList": [],
-    "ignoreUploadUnusedFiles": false,
+    "ignoreUploadUnusedFiles": true,
     "compileHotReLoad": false,
     "skylineRenderEnable": true,
     "es6": true,
@@ -41,7 +41,7 @@
     "tabIndent": "insertSpaces",
     "tabSize": 2
   },
-  "libVersion": "trial",
+  "libVersion": "3.17.2",
   "packOptions": {
     "ignore": [],
     "include": []

@@ -315,7 +315,7 @@ async function main() {
     console.log('Updated article', String(article.id));
     console.log('contentHtml length', contentHtml.length);
     console.log('rehosted images', urlMap.size);
-    console.log('Open mini-program: /pages/article/detail?id=' + articleId);
+    console.log('Open mini-program: /pages/home/article-detail/article-detail?id=' + articleId);
   } finally {
     await prisma.$disconnect();
   }

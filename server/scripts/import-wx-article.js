@@ -122,7 +122,7 @@ async function main() {
       },
     });
     console.log('Created article id=', String(article.id));
-    console.log('Open: /pages/article/detail?id=' + String(article.id));
+    console.log('Open: /pages/home/article-detail/article-detail?id=' + String(article.id));
   } finally {
     await prisma.$disconnect();
   }

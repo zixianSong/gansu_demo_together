@@ -14,19 +14,8 @@ async function main() {
   await prisma.article.deleteMany();
   await prisma.poi.deleteMany();
   await prisma.routeTemplate.deleteMany();
-  await prisma.bizTourRoute.deleteMany();
-  await prisma.sysCarModel.deleteMany();
   await prisma.destination.deleteMany();
 
-  const xining = await prisma.destination.create({
-    data: {
-      name: '西宁',
-      coverUrl: cover('xining'),
-      intro: '青海省会，青甘周边包车常用出发地',
-      status: 1,
-      sortWeight: 0,
-    },
-  });
   const lanzhou = await prisma.destination.create({
     data: {
       name: '兰州',
@@ -36,133 +25,22 @@ async function main() {
       sortWeight: 1,
     },
   });
-  const zhangye = await prisma.destination.create({
-    data: {
-      name: '张掖',
-      coverUrl: cover('zhangye'),
-      intro: '丹霞地貌与草原风光',
-      status: 1,
-      sortWeight: 2,
-    },
-  });
   const dunhuang = await prisma.destination.create({
     data: {
       name: '敦煌',
       coverUrl: cover('dunhuang'),
       intro: '丝绸之路上的艺术宝库',
       status: 1,
+      sortWeight: 2,
+    },
+  });
+  const zhangye = await prisma.destination.create({
+    data: {
+      name: '张掖',
+      coverUrl: cover('zhangye'),
+      intro: '丹霞地貌与草原风光',
+      status: 1,
       sortWeight: 3,
-    },
-  });
-  await prisma.destination.create({
-    data: {
-      name: '嘉峪关',
-      coverUrl: cover('jiayuguan'),
-      intro: '明代长城西端关城',
-      status: 1,
-      sortWeight: 4,
-    },
-  });
-  await prisma.destination.create({
-    data: {
-      name: '格尔木',
-      coverUrl: cover('geermu'),
-      intro: '青藏线上的交通枢纽',
-      status: 1,
-      sortWeight: 5,
-    },
-  });
-
-  await prisma.sysCarModel.createMany({
-    data: [
-      { modelName: '商务5座', vehicleType: '轿车', seatCount: 5, sortOrder: 0, status: 1 },
-      { modelName: '商务7座', vehicleType: 'MPV', seatCount: 7, sortOrder: 1, status: 1 },
-      { modelName: '商务9座', vehicleType: '商务车', seatCount: 9, sortOrder: 2, status: 1 },
-    ],
-  });
-
-  await prisma.bizTourRoute.create({
-    data: {
-      routeName: '半日游・塔尔寺 + 南山公园',
-      startCity: '西宁',
-      endCity: '西宁',
-      estimatedDuration: '半日游',
-      referencePrice: 268,
-      routeDesc: '上门接送',
-      coverImg: cover('charter-taersi'),
-      status: 1,
-    },
-  });
-  const r2 = await prisma.bizTourRoute.create({
-    data: {
-      routeName: '1日游・青海湖二郎剑 + 日月山 + 拉脊山…',
-      startCity: '西宁',
-      endCity: '青海湖',
-      estimatedDuration: '1日游',
-      referencePrice: 699,
-      routeDesc: '全程一口价 / 随走随停',
-      coverImg: cover('charter-qinghaihu'),
-      status: 1,
-    },
-  });
-  await prisma.bizTourRoute.create({
-    data: {
-      routeName: '1日游・贵德地质公园 + 黄河清大桥',
-      startCity: '西宁',
-      endCity: '贵德',
-      estimatedDuration: '1日游',
-      referencePrice: 459,
-      routeDesc: '含过路费',
-      coverImg: cover('charter-guide'),
-      status: 1,
-    },
-  });
-  await prisma.bizTourRoute.create({
-    data: {
-      routeName: '2日游・青海湖 + 茶卡盐湖短途往返',
-      startCity: '西宁',
-      endCity: '茶卡',
-      estimatedDuration: '2日游',
-      referencePrice: 1280,
-      routeDesc: '含司机住宿补贴',
-      coverImg: cover('charter-chaka'),
-      status: 1,
-    },
-  });
-  await prisma.bizTourRoute.create({
-    data: {
-      routeName: '2日游・门源油菜花 + 祁连山草原…',
-      startCity: '西宁',
-      endCity: '门源',
-      estimatedDuration: '2日游',
-      referencePrice: 980,
-      routeDesc: '含司机食宿',
-      coverImg: cover('charter-menyuan'),
-      status: 1,
-    },
-  });
-  await prisma.bizTourRoute.create({
-    data: {
-      routeName: '2日游・敦煌莫高窟 + 鸣沙山月牙泉…',
-      startCity: '西宁',
-      endCity: '敦煌',
-      estimatedDuration: '2日游',
-      referencePrice: 1680,
-      routeDesc: '全程一口价 / 含门票代订',
-      coverImg: cover('charter-mogao-xn'),
-      status: 1,
-    },
-  });
-  await prisma.bizTourRoute.create({
-    data: {
-      routeName: '2日游・敦煌莫高窟 + 鸣沙山月牙泉…',
-      startCity: '敦煌',
-      endCity: '敦煌',
-      estimatedDuration: '2日游',
-      referencePrice: 1680,
-      routeDesc: '全程一口价 / 含门票代订',
-      coverImg: cover('charter-mogao-dh'),
-      status: 1,
     },
   });
 
@@ -272,7 +150,11 @@ async function main() {
   });
 
   await prisma.homeHotDestination.createMany({
-    data: [{ destinationId: xining.id, sortOrder: 0, status: 1 }],
+    data: [
+      { destinationId: lanzhou.id, sortOrder: 0, status: 1 },
+      { destinationId: dunhuang.id, sortOrder: 1, status: 1 },
+      { destinationId: zhangye.id, sortOrder: 2, status: 1 },
+    ],
   });
   await prisma.homeHotRoute.createMany({
     data: [
@@ -284,19 +166,11 @@ async function main() {
   await prisma.banner.createMany({
     data: [
       {
-        title: '青海湖1日游 立减50元',
-        imageUrl: cover('banner-qinghai-charter'),
-        linkType: 'route',
-        linkId: r2.id,
-        sortOrder: 0,
-        status: 1,
-      },
-      {
         title: '丝路攻略推荐',
         imageUrl: cover('banner-article'),
         linkType: 'article',
         linkId: article1.id,
-        sortOrder: 1,
+        sortOrder: 0,
         status: 1,
       },
       {
@@ -304,15 +178,15 @@ async function main() {
         imageUrl: cover('banner-poi'),
         linkType: 'poi',
         linkId: mogao.id,
-        sortOrder: 2,
+        sortOrder: 1,
         status: 1,
       },
       {
         title: '河西走廊线路',
         imageUrl: cover('banner-route'),
-        linkType: 'route_template',
+        linkType: 'route',
         linkId: hexi.id,
-        sortOrder: 3,
+        sortOrder: 2,
         status: 1,
       },
       {
@@ -320,7 +194,7 @@ async function main() {
         imageUrl: cover('banner-h5'),
         linkType: 'webview',
         linkPath: 'https://example.com/activity',
-        sortOrder: 4,
+        sortOrder: 3,
         status: 1,
       },
     ],
@@ -328,12 +202,11 @@ async function main() {
 
   console.log('Seed completed.');
   console.log({
-    destinations: 6,
+    destinations: 3,
     pois: 3,
     routes: 2,
-    charterRoutes: 7,
     articles: 2,
-    banners: 5,
+    banners: 4,
   });
 }
 

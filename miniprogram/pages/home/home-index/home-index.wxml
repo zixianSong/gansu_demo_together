@@ -1,0 +1,132 @@
+<view class="page">
+  <!-- MasterGo 3:843 搜索条 -->
+  <view class="search-wrap">
+    <view class="search-bar" bindtap="onSearch">
+      <text class="search-placeholder">搜索甘肃景点/线路/美食...</text>
+      <view class="search-btn">
+        <image class="search-icon" src="/static/images/icon/search.svg" mode="aspectFit" />
+      </view>
+    </view>
+  </view>
+
+  <scroll-view class="main-scroll" scroll-y enhanced show-scrollbar="{{false}}">
+    <swiper
+      class="banner"
+      indicator-dots
+      indicator-color="rgba(255,255,255,0.5)"
+      indicator-active-color="#FFFFFF"
+      autoplay
+      circular
+    >
+      <swiper-item
+        wx:for="{{banners}}"
+        wx:key="id"
+        data-item="{{item}}"
+        bindtap="onBannerTap"
+      >
+        <image class="banner-img" src="{{item.imageUrl}}" mode="aspectFill" />
+      </swiper-item>
+    </swiper>
+
+    <view class="card category-card">
+      <view
+        class="category-item"
+        wx:for="{{categories}}"
+        wx:key="name"
+        data-name="{{item.name}}"
+        bindtap="onCategoryTap"
+      >
+        <image class="category-icon" src="{{item.icon}}" mode="aspectFit" />
+        <text class="category-name">{{item.name}}</text>
+      </view>
+    </view>
+
+    <!-- 今日行程：设计稿常驻；无数据时占位 -->
+    <view class="card trip-card" bindtap="onTripTap">
+      <view class="section-head">
+        <text class="section-title">今日行程</text>
+        <text class="section-more">查看更多 ></text>
+      </view>
+      <scroll-view class="trip-scroll" scroll-x enhanced show-scrollbar="{{false}}">
+        <view class="trip-list">
+          <view class="trip-item" wx:for="{{trips}}" wx:key="title">
+            <text class="trip-title text-ellipsis">{{item.title}}</text>
+            <text class="trip-time">{{item.time}}</text>
+            <text class="trip-city">{{item.city}}</text>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+
+    <view class="hot-row" wx:if="{{destinations.length || routes.length}}">
+      <view class="hot-panel" wx:if="{{destinations.length}}">
+        <view class="hot-head">
+          <text class="hot-title">热门目的地</text>
+        </view>
+        <view class="hot-grid">
+          <view class="hot-cell" wx:for="{{destinations}}" wx:key="name">
+            <image class="hot-cover" src="{{item.cover}}" mode="aspectFill" />
+            <text class="hot-label">{{item.name}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="hot-panel" wx:if="{{routes.length}}">
+        <view class="hot-head">
+          <text class="hot-title">热门线路</text>
+        </view>
+        <view class="hot-grid">
+          <view class="hot-cell" wx:for="{{routes}}" wx:key="name">
+            <image class="hot-cover" src="{{item.cover}}" mode="aspectFill" />
+            <text class="hot-label hot-label-sm">{{item.name}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="feed">
+      <view class="feed-col">
+        <view
+          class="feed-card"
+          wx:for="{{leftFeed}}"
+          wx:key="id"
+          data-id="{{item.id}}"
+          bindtap="onFeedTap"
+        >
+          <image class="feed-cover" src="{{item.coverUrl}}" mode="aspectFill" />
+          <view class="feed-body">
+            <text class="feed-title">{{item.title}}</text>
+            <view class="feed-tags" wx:if="{{item.tags && item.tags.length}}">
+              <text class="feed-tag" wx:for="{{item.tags}}" wx:for-item="tag" wx:key="*this">{{tag}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="feed-col">
+        <view
+          class="feed-card"
+          wx:for="{{rightFeed}}"
+          wx:key="id"
+          data-id="{{item.id}}"
+          bindtap="onFeedTap"
+        >
+          <image class="feed-cover" src="{{item.coverUrl}}" mode="aspectFill" />
+          <view class="feed-body">
+            <text class="feed-title">{{item.title}}</text>
+            <view class="feed-tags" wx:if="{{item.tags && item.tags.length}}">
+              <text class="feed-tag" wx:for="{{item.tags}}" wx:for-item="tag" wx:key="*this">{{tag}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="safe-bottom"></view>
+  </scroll-view>
+
+  <view class="ai-float" bindtap="onAiTap">
+    <image class="ai-avatar" src="/static/images/icon/ai.png" mode="aspectFill" />
+    <text class="ai-badge">AI</text>
+  </view>
+
+  <tab-bar />
+</view>

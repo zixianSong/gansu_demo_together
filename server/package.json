@@ -21,17 +21,7 @@
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
     "prisma:deploy": "prisma migrate deploy",
-    "prisma:seed": "prisma db seed",
-    "prisma:ensure-users": "prisma db execute --schema prisma/schema.prisma --file prisma/ensure-users.sql",
-    "prisma:ensure-orders": "prisma db execute --schema prisma/schema.prisma --file prisma/ensure-orders.sql",
-    "prisma:seed-orders": "prisma db execute --schema prisma/schema.prisma --file prisma/seed-orders.sql",
-    "prisma:ensure-reviews": "prisma db execute --schema prisma/schema.prisma --file prisma/ensure-reviews.sql",
-    "prisma:seed-reviews": "prisma db execute --schema prisma/schema.prisma --file prisma/seed-reviews.sql",
-    "prisma:ensure-travelers": "prisma db execute --schema prisma/schema.prisma --file prisma/ensure-travelers.sql",
-    "prisma:seed-travelers": "prisma db execute --schema prisma/schema.prisma --file prisma/seed-travelers.sql",
-    "prisma:ensure-explore": "prisma db execute --schema prisma/schema.prisma --file prisma/ensure-explore.sql",
-    "prisma:seed-explore": "prisma db execute --schema prisma/schema.prisma --file prisma/seed-explore.sql",
-    "prisma:ensure-feedback": "prisma db execute --schema prisma/schema.prisma --file prisma/ensure-feedback.sql"
+    "prisma:seed": "prisma db seed"
   },
   "prisma": {
     "seed": "ts-node --transpile-only prisma/seed.ts"
@@ -40,7 +30,6 @@
     "@nestjs/common": "^11.0.1",
     "@nestjs/config": "^12.0.0",
     "@nestjs/core": "^11.0.1",
-    "@nestjs/jwt": "^12.0.2",
     "@nestjs/platform-express": "^11.0.1",
     "@prisma/client": "^6.19.3",
     "class-transformer": "^0.5.1",
@@ -57,7 +46,6 @@
     "@nestjs/testing": "^11.0.1",
     "@types/express": "^5.0.0",
     "@types/jest": "^30.0.0",
-    "@types/multer": "^2.2.0",
     "@types/node": "^24.0.0",
     "@types/supertest": "^7.0.0",
     "dotenv": "^17.4.2",

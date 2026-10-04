@@ -7,7 +7,7 @@ export class RedisService implements OnModuleInit, OnModuleDestroy {
 
   async onModuleInit() {
     this.client = createClient({
-      url: process.env.REDIS_URL || 'redis://127.0.0.1:6380',
+      url: process.env.REDIS_URL || 'redis://localhost:6380',
     });
     this.client.on('error', (err) => {
       console.error('Redis error:', err.message);
