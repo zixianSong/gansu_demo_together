@@ -292,7 +292,7 @@ async function main() {
       {
         title: '青海湖1日游 立减50元',
         imageUrl: cover('banner-qinghai-charter'),
-        linkType: 'route',
+        linkType: 'charter',
         linkId: r2.id,
         sortOrder: 0,
         status: 1,
@@ -336,11 +336,13 @@ async function main() {
 
   console.log('Seed completed.');
   console.log({
-    destinations: 3,
+    destinations: 6,
     pois: 3,
     routes: 2,
+    charterRoutes: 7,
+    carModels: 3,
     articles: 2,
-    banners: 4,
+    banners: 5,
     plans: 2,
     currentPlanId: trips.currentId,
   });

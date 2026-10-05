@@ -238,7 +238,7 @@ export class CharterService {
       where: {
         status: 1,
         deletedAt: null,
-        linkType: 'route',
+        linkType: 'charter',
         AND: [
           { OR: [{ startAt: null }, { startAt: { lte: now } }] },
           { OR: [{ endAt: null }, { endAt: { gte: now } }] },
