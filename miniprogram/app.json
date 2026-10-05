@@ -1,5 +1,7 @@
 {
   "pages": [
+    "pages/home/home-index/home-index",
+    "pages/home/article-detail/article-detail",
     "pages/trip-manage/multi-day/multi-day",
     "pages/trip-manage/single-day/single-day",
     "pages/trip-manage/map/map",
