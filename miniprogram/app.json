@@ -1,7 +1,15 @@
 {
   "pages": [
-    "pages/home/home-index/home-index",
-    "pages/home/article-detail/article-detail",
+    "pages/trip-manage/multi-day/multi-day",
+    "pages/trip-manage/single-day/single-day",
+    "pages/trip-manage/map/map",
+    "pages/trip-manage/overview/overview",
+    "pages/trip-manage/summary/summary",
+    "pages/plan/plan-index/plan-index",
+    "pages/plan/plan-create/plan-create",
+    "pages/plan/plan-switch/plan-switch",
+    "pages/trip-plan/chat/chat",
+    "pages/trip-plan/plan-detail/plan-detail",
     "pages/discovery/attraction/attraction-detail"
   ],
   "window": {
@@ -13,5 +21,11 @@
   "style": "v2",
   "componentFramework": "glass-easel",
   "lazyCodeLoading": "requiredComponents",
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "permission": {
+    "scope.userLocation": {
+      "desc": "用于行程中感知你与下一站的位置关系"
+    }
+  },
+  "requiredPrivateInfos": ["getLocation"]
 }
