@@ -12,7 +12,8 @@
     "pages/plan/plan-switch/plan-switch",
     "pages/trip-plan/chat/chat",
     "pages/trip-plan/plan-detail/plan-detail",
-    "pages/discovery/attraction/attraction-detail"
+    "pages/discovery/attraction/attraction-detail",
+    "pages/car-charter/charter-index/charter-index"
   ],
   "window": {
     "navigationBarTextStyle": "black",
