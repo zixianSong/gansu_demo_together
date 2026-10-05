@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client';
+import { clearTripManage, seedTripManage } from './seed/trip-manage';
 
 const prisma = new PrismaClient();
 
@@ -6,6 +7,7 @@ const cover = (name: string) =>
   `https://picsum.photos/seed/${encodeURIComponent(name)}/800/600`;
 
 async function main() {
+  await clearTripManage(prisma);
   await prisma.articleRoute.deleteMany();
   await prisma.articlePoi.deleteMany();
   await prisma.homeHotRoute.deleteMany();
@@ -200,6 +202,8 @@ async function main() {
     ],
   });
 
+  const trips = await seedTripManage(prisma, { mogao, museum, noodle });
+
   console.log('Seed completed.');
   console.log({
     destinations: 3,
@@ -207,6 +211,8 @@ async function main() {
     routes: 2,
     articles: 2,
     banners: 4,
+    plans: 2,
+    currentPlanId: trips.currentId,
   });
 }
 
