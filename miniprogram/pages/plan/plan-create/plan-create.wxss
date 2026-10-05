@@ -1,0 +1,10 @@
+@import '../../../components/trip-manage-chrome/trip-manage.wxss';
+.choice {
+  display: flex;
+  gap: 12px;
+  margin: 16px;
+}
+.choice .card {
+  flex: 1;
+  margin: 0;
+}

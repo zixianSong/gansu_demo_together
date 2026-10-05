@@ -1,0 +1,14 @@
+@import '../../../components/trip-manage-chrome/trip-manage.wxss';
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  background: #fff;
+}
+.tabs .on {
+  color: #1677ff;
+  font-weight: 600;
+}
+.tabs text {
+  padding: 12px 0;
+}

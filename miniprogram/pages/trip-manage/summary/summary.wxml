@@ -1,0 +1,31 @@
+<view class="page">
+  <view class="tabs">
+    <text class="{{mode === 'review' ? 'on' : ''}}" bindtap="showReview">回顾中</text>
+    <text class="{{mode === 'report' ? 'on' : ''}}" bindtap="showReport">总结报告</text>
+  </view>
+  <block wx:if="{{mode === 'review'}}">
+    <view class="card">
+      <view class="card__title">{{name}}</view>
+      <view class="meta">{{summary}}</view>
+      <view class="meta">阶段：{{phase}} {{canAdjust ? '' : '（已结束，不可再调整）'}}</view>
+    </view>
+    <view class="card" wx:for="{{items}}" wx:key="id">
+      <view>{{item.name}}</view>
+      <view class="meta">{{item.completed ? '已完成' : '未完成'}}</view>
+    </view>
+  </block>
+  <block wx:else>
+    <view class="card">
+      <view class="card__title">{{name}}</view>
+      <view class="meta">{{summary}}</view>
+    </view>
+    <view class="card">
+      <view class="card__title">徽章</view>
+      <view class="meta">{{badges}}</view>
+    </view>
+    <view class="card">
+      <view class="card__title">分析</view>
+      <view class="meta">{{analytics}}</view>
+    </view>
+  </block>
+</view>

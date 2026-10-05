@@ -1,0 +1,9 @@
+{
+  "navigationStyle": "custom",
+  "navigationBarTextStyle": "black",
+  "navigationBarBackgroundColor": "#FFFFFF",
+  "backgroundColor": "#F7F7F8",
+  "usingComponents": {
+    "trip-manage-chrome": "/components/trip-manage-chrome/trip-manage-chrome"
+  }
+}
