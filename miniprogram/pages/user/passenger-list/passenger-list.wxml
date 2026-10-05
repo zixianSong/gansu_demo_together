@@ -1,0 +1,18 @@
+<view class="page-container">
+  <view class="add-wrap">
+    <button class="add-btn" bindtap="onAdd">+ 新增出行人</button>
+    <text class="hint">姓名需与证件保持一致，否则可能影响入园</text>
+  </view>
+
+  <view class="card person" wx:for="{{list}}" wx:key="travelerId">
+    <view class="info">
+      <text class="name">{{item.name}}</text>
+      <text class="sub">{{item.idNo}}</text>
+      <text class="sub">{{item.phoneLine}}</text>
+    </view>
+    <view class="ops">
+      <text class="op" data-id="{{item.travelerId}}" bindtap="onEdit">编辑</text>
+      <text class="op" data-id="{{item.travelerId}}" bindtap="onDelete">删除</text>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,59 @@
+<view class="page-container">
+  <view class="tabs">
+    <view class="tab {{activeTab === 'pending' ? 'tab--active' : ''}}" data-tab="pending" bindtap="onTabChange">待点评</view>
+    <view class="tab {{activeTab === 'posted' ? 'tab--active' : ''}}" data-tab="posted" bindtap="onTabChange">已点评</view>
+  </view>
+
+  <view wx:if="{{activeTab === 'pending'}}" class="list">
+    <view wx:if="{{!pending.length}}" class="hint">暂无待点评订单</view>
+    <view class="card item" wx:for="{{pending}}" wx:key="id">
+      <view class="top">
+        <text class="cat">{{item.category}}</text>
+        <text class="status">待评价</text>
+      </view>
+      <view class="body">
+        <view class="info">
+          <text class="title">{{item.title}}</text>
+          <text class="meta">有效期：{{item.validDate}}</text>
+          <text class="meta">份数：{{item.count}}</text>
+          <text class="meta">使用方式：{{item.usage}}</text>
+        </view>
+        <view class="price-wrap">
+          <text class="price">¥{{item.price}}</text>
+          <text class="meta">已核销</text>
+        </view>
+      </view>
+      <view class="actions">
+        <button
+          wx:for="{{item.actionButtons}}"
+          wx:for-item="btn"
+          wx:key="key"
+          size="mini"
+          class="action-btn {{btn.primary ? 'action-btn--primary' : 'action-btn--ghost'}}"
+          data-action="{{btn.key}}"
+          data-id="{{item.id}}"
+          data-place="{{item.place}}"
+          data-address="{{item.address}}"
+          bindtap="onPendingAction"
+        >{{btn.label}}</button>
+      </view>
+    </view>
+  </view>
+
+  <view wx:else class="list">
+    <view wx:if="{{!posted.length}}" class="hint">暂无已点评内容</view>
+    <view class="card item" wx:for="{{posted}}" wx:key="reviewId">
+      <view class="top">
+        <text class="score">{{item.score}}</text>
+        <text class="meta">{{item.date}}</text>
+      </view>
+      <text class="content">{{item.content}}</text>
+      <view class="bottom">
+        <text class="meta">{{item.place}}</text>
+        <text class="meta link" data-id="{{item.reviewId}}" data-anonymous="{{item.anonymous}}" bindtap="onToggleAnonymous">{{item.anonymous ? '已匿名' : '公开'}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="hint">没有更多了</view>
+</view>

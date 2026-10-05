@@ -1,0 +1,7 @@
+<view class="page-container">
+  <view class="card doc">
+    <text class="title">{{title}}</text>
+    <text class="paragraph" wx:for="{{paragraphs}}" wx:key="*this">{{item}}</text>
+    <rich-text wx:if="{{html}}" class="html" nodes="{{html}}"></rich-text>
+  </view>
+</view>

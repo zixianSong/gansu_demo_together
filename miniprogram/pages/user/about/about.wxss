@@ -1,0 +1,25 @@
+.doc {
+  padding: var(--space-lg);
+}
+
+.title {
+  display: block;
+  font-size: var(--font-size-heading);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  margin-bottom: var(--space-lg);
+}
+
+.paragraph {
+  display: block;
+  margin-bottom: var(--space-md);
+  font-size: var(--font-size-body);
+  color: var(--text-secondary);
+}
+
+.html {
+  display: block;
+  font-size: var(--font-size-body);
+  color: var(--text-secondary);
+  line-height: 1.7;
+}

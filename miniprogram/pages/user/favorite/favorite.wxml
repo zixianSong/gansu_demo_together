@@ -1,0 +1,31 @@
+<view class="page-container">
+  <view class="tabs">
+    <view
+      class="chip {{activeTab === item.key ? 'chip--active' : ''}}"
+      wx:for="{{tabs}}"
+      wx:key="key"
+      data-key="{{item.key}}"
+      bindtap="onTabChange"
+    >{{item.label}}</view>
+  </view>
+
+  <view class="list">
+    <view wx:if="{{!list.length}}" class="hint">该分类暂无收藏</view>
+    <view class="card row" wx:for="{{list}}" wx:key="favoriteId" data-path="{{item.path}}" bindtap="onOpen">
+      <image class="cover" src="{{item.coverUrl}}" mode="aspectFill" />
+      <view class="meta">
+        <text class="title {{activeTab === 'guide' ? 'title--wrap' : ''}}">{{item.title}}</text>
+        <text wx:if="{{activeTab === 'spot'}}" class="price">¥{{item.price}}<text class="unit">起</text></text>
+        <text wx:if="{{activeTab === 'spot'}}" class="sub">收藏于 {{item.collectedAt}}</text>
+        <text wx:if="{{activeTab === 'route'}}" class="sub">{{item.subtitle}}</text>
+        <text wx:if="{{activeTab === 'route'}}" class="price">¥{{item.price}}<text class="unit">起</text></text>
+        <text wx:if="{{activeTab === 'guide'}}" class="sub">{{item.author}} · {{item.publishTime}}</text>
+        <text wx:if="{{activeTab === 'guide'}}" class="sub">阅读 {{item.readCount}} 点赞 {{item.likeCount}}</text>
+        <text wx:if="{{activeTab === 'food'}}" class="score">{{item.rating}} 人均 ¥{{item.avgCost}}</text>
+        <text wx:if="{{activeTab === 'food'}}" class="sub">{{item.address}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="hint">没有更多了</view>
+</view>

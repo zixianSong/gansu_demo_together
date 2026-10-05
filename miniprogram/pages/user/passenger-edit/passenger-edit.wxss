@@ -1,0 +1,45 @@
+.profile-page {
+  padding-bottom: var(--save-bar-space);
+}
+
+.form-card {
+  margin-top: var(--space-md);
+  background-color: var(--color-white);
+}
+
+.form-row {
+  padding: var(--space-md) var(--page-padding-horizontal);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: var(--hairline) solid var(--fill-base);
+}
+
+.label {
+  font-size: var(--font-size-body);
+  color: var(--text-secondary);
+  width: var(--label-width);
+  flex-shrink: 0;
+}
+
+.value-input {
+  flex: 1;
+  text-align: right;
+  font-size: var(--font-size-body);
+  color: var(--text-primary);
+}
+
+.save-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--color-white);
+  border-top: var(--hairline) solid var(--fill-base);
+  padding: var(--space-md) var(--page-padding-horizontal);
+}
+
+.save-btn {
+  width: 100%;
+  border-radius: var(--radius-full);
+}

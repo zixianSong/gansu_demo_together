@@ -1,0 +1,37 @@
+<view class="page-container privacy-page">
+  <view class="hero">
+    <text class="hero-title">隐私政策简要版</text>
+    <text class="hero-desc">清晰告知提供服务所需收集信息及收集方式</text>
+    <text class="hero-link" bindtap="onFull">完整版请查看《隐私政策》</text>
+  </view>
+
+  <view class="card block">
+    <view class="block-head">
+      <view class="bar"></view>
+      <text class="block-title">为提供服务收集使用的个人信息类型</text>
+    </view>
+    <view class="item" wx:for="{{infoItems}}" wx:key="title">
+      <view class="icon"></view>
+      <view class="item-body">
+        <text class="item-title">{{item.title}}</text>
+        <text class="item-desc">{{item.desc}}</text>
+      </view>
+    </view>
+    <view class="footer-link" bindtap="onCollect">查看个人信息收集清单 ›</view>
+  </view>
+
+  <view class="card block">
+    <view class="block-head">
+      <view class="bar"></view>
+      <text class="block-title">为提供服务申请使用的权限</text>
+    </view>
+    <view class="item" wx:for="{{permItems}}" wx:key="title">
+      <view class="icon"></view>
+      <view class="item-body">
+        <text class="item-title">{{item.title}}</text>
+        <text class="item-desc">{{item.desc}}</text>
+      </view>
+    </view>
+    <view class="footer-link footer-link--blue" bindtap="onPermission">查看应用权限说明 ›</view>
+  </view>
+</view>
